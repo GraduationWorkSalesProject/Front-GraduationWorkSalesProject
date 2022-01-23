@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import useTextArea from '../../hooks/useTextArea';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
-import Chip from '../common/Chip'; 
+import Chip from '../common/Chip';
+import { AddProductApi } from '../../api/product';
 import { Input } from '../common/Input';
 import useInput from '../../hooks/useInput';
 import useSelect from '../../hooks/useSelect';
@@ -99,7 +100,36 @@ const ProductRegister = () => {
     [tagName, tags],
   );
 
- 
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    console.log(images);
+    let formData = new FormData();
+
+    images?.forEach((image, index) => {
+      if (index === 0) formData.append(`productRepImage`, image);
+      else formData.append(`productImage${index}`, image);
+    });
+    formData.append('productName  ', productName);
+    formData.append('categoryId ', category);
+    tags?.forEach((tag) => {
+      formData.append('hashtags ', tag);
+    });
+    formData.append('productPrice ', price);
+    formData.append('productDeliveryPrice ', shipFee);
+
+    formData.append('productDeliveryTerm ', shipStart);
+    formData.append('productInformation ', content);
+
+    try {
+      const response = await AddProductApi(formData);
+      if (response.status === 200 || 201) {
+        console.log('상품등록 성공');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const CATEGORY = [
     { title: '전체', id: 5 },
@@ -115,7 +145,7 @@ const ProductRegister = () => {
 
   return (
     <RegisterPage>
-      <RegisterForm>
+      <RegisterForm onSubmit={onSubmit}>
         <RegisterItem>
           <RegisterTitle>
             상품 이미지 &nbsp;
