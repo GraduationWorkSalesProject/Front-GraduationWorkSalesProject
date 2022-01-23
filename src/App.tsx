@@ -8,6 +8,7 @@ import {
   MyLikeItemPage,
   MyPage,
   ProductDetailPage, 
+  ProductRegisterPage,
   SellerPage, 
 } from './pages';
 import GlobalStyle from './styles/globalStyles';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/join" component={JoinPage} />
         <Route path="/sellerInfo" component={SellerPage} /> 
         <Route path="/products" component={ProductDetailPage} />
+        <Route path="/productRegister" component={ProductRegisterPage} />
         <Route path="/myPage" component={MyPage} />
         <Route path="/myLikeItem" component={MyLikeItemPage} /> 
       </Switch>
