@@ -7,10 +7,11 @@ import {
   MainPage,
   MyLikeItemPage,
   MyPage,
-  ProductDetailPage, 
   ProductRegisterPage,
-  SellerPage, 
-} from './pages';
+  ProductDetailPage,  
+  SellerPage,
+  ChattingPage, 
+} from './pages'; 
 import GlobalStyle from './styles/globalStyles';
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
         <Route path="/productRegister" component={ProductRegisterPage} />
         <Route path="/myPage" component={MyPage} />
         <Route path="/myLikeItem" component={MyLikeItemPage} /> 
+        <Route path="/chatting" component={ChattingPage} />
+        <Route path="/chatting/:chatId" component={ChattingPage} />
       </Switch>
     </BrowserRouter>
   );
