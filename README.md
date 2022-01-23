@@ -1,3 +1,11 @@
-매 년 많은 학생들이 졸업을 하고, 학생들이 제출한 상당수의 졸업 작품들이 
-버려진다고 합니다. 막 졸업을 한 학생들이 정성스럽게 각자의 기량을 담아
-만든 귀중한 작품들을 판매할 수 있도록 만든 웹 프로젝트입니다
+#  그라듀 프론트 
+
+- 졸업작품 판매 사이트 
+
+##  🛠 기술스택
+- React
+- TypeScript
+- Styled-Components
+- Redux
+
+### [백엔드 Repository](https://github.com/GraduationWorkSalesProject/Spring-GraduationWorkSalesProject)
