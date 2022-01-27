@@ -7,8 +7,9 @@ const MainPage = () => {
   return (
     <>
       <Carousel /> 
+      <ListGoods title="Best ITEMS"/>
       <CategoryMap />
-      <ListGoods />
+      <ListGoods title="New ITEMS"/>
     </>
   );
 };

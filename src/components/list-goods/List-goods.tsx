@@ -3,15 +3,14 @@ import Goods from '../goods/Goods';
 import styled from 'styled-components';
 import { loadProductsRecent } from '../../api/product';
 
-const ListGoods = () => {
+const ListGoods = (text:any) => {
 
-  const [title, setTitle] = useState('New ITEMS');
-  const [recent,setRecent] = useState([])
+  const [products,setProducts] = useState([]) 
   const loadRecentData =  async ( )=>{
     try{
       const response = await loadProductsRecent();  
       const temp:any = response.data;
-      setRecent(temp.data);
+      setProducts(temp.data);
     }catch(err){
       console.log(err);
     } 
@@ -25,7 +24,7 @@ const ListGoods = () => {
     <Section>
       <ListTop>
         <TitleWapper>
-          <span>{title}</span>
+          <span>{text.title}</span>
         </TitleWapper>
        <More>
          <button>더보기</button>
@@ -33,7 +32,7 @@ const ListGoods = () => {
       </ListTop>
       <Divide></Divide>
       <ListBottom> 
-        {recent.map((item,idx)=>(
+        {products.map((item,idx)=>(
           <Goods item={item} key={idx}/>
         ))}
       </ListBottom>
