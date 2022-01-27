@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Goods from '../goods/Goods';
 import styled from 'styled-components';
-import { loadProductsRecent } from '../../api/product';
+import { loadProductsBest, loadProductsRecent } from '../../api/product';
 
 const ListGoods = (text:any) => {
 
   const [products,setProducts] = useState([]) 
+
   const loadRecentData =  async ( )=>{
     try{
       const response = await loadProductsRecent();  
@@ -16,8 +17,23 @@ const ListGoods = (text:any) => {
     } 
   }
 
+  const loadBestData = async () => {
+    try{
+      const response = await loadProductsBest();
+      const temp:any = response.data;
+      setProducts(temp.data);
+    }catch(err){
+      console.log(err);
+    } 
+  }
+
   useEffect(()=>{
-    loadRecentData();
+    if(text.title==="New ITEMS"){
+      loadRecentData();
+    }
+    else if(text.title==="Best ITEMS"){
+      loadBestData();
+    }
   },[])
 
   return(

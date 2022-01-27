@@ -14,3 +14,12 @@ export const loadProductsRecent   = async () =>{
   console.log("응답",response);
   return response;
 }
+
+export const loadProductsBest   = async () =>{
+  const response = await client.get('products/lists/like');
+  if (response.status !== 200) {
+    throw response.status;
+  }
+  console.log("응답",response);
+  return response;
+}
