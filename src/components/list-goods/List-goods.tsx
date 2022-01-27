@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Goods from '../goods/Goods';
 import styled from 'styled-components';
+import { loadProductsRecent } from '../../api/product';
 
 const ListGoods = () => {
 
   const [title, setTitle] = useState('Best Items');
+  const [recent,setRecent] = useState([])
+  const loadRecentData =  async ( )=>{
+    try{
+      const response = await loadProductsRecent();  
+      const temp:any = response.data;
+      setRecent(temp.data.slice(0,4));
+    }catch(err){
+      console.log(err);
+    } 
+  }
+
+  useEffect(()=>{
+    loadRecentData();
+  },[])
 
   return(
     <Section>
@@ -17,11 +32,10 @@ const ListGoods = () => {
        </More>
       </ListTop>
       <Divide></Divide>
-      <ListBottom>
-        <Goods/>
-        <Goods/>
-        <Goods/>
-        <Goods/>
+      <ListBottom> 
+        {recent.map((item,idx)=>(
+          <Goods item={item}/>
+        ))}
       </ListBottom>
     </Section>
   

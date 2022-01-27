@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const Goods = () => {
+const Goods = ({item}:any) => { 
   return (
       <Container>
         <ItemImg src="https://picsum.photos/180" alt="product_image"/>
         <ItemTop>
           <div>
-            <Name>상품명</Name>
+            <Name>{item.productName}</Name>
           </div>
           <div>
             <FavoriteIcon className="fas fa-heart"></FavoriteIcon>
@@ -16,7 +16,7 @@ const Goods = () => {
           </div>
         </ItemTop>
         <div>
-          <Price>가격</Price>
+          <Price>{item.productPrice}</Price>
           <Author>작가명</Author>
         </div>
       </Container>
@@ -24,7 +24,8 @@ const Goods = () => {
 }
 
 const Container = styled.div`
-  width: 195px;
+
+  margin: 0 1rem;
 `;
 
 const ItemImg = styled.img`
