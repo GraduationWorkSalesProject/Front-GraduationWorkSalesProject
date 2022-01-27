@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Goods = ({item}:any) => { 
   return (
       <Container>
-        <ItemImg src="https://picsum.photos/180" alt="product_image"/>
+        <ItemImg src={item.representationImage.imageHref} alt="product_image"/>
         <ItemTop>
           <div>
             <Name>{item.productName}</Name>
@@ -16,7 +16,7 @@ const Goods = ({item}:any) => {
           </div>
         </ItemTop>
         <div>
-          <Price>{item.productPrice}</Price>
+          <Price>{item.productPrice.toLocaleString()} 원</Price>
           <Author>작가명</Author>
         </div>
       </Container>
