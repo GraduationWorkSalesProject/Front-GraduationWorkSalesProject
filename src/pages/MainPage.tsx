@@ -6,10 +6,8 @@ import CategoryMap from '../components/CategoryMap';
 const MainPage = () => {
   return (
     <>
-      <Carousel />
-      <ListGoods />
+      <Carousel /> 
       <CategoryMap />
-      <ListGoods />
       <ListGoods />
     </>
   );

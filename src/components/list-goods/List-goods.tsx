@@ -5,13 +5,13 @@ import { loadProductsRecent } from '../../api/product';
 
 const ListGoods = () => {
 
-  const [title, setTitle] = useState('Best Items');
+  const [title, setTitle] = useState('New ITEMS');
   const [recent,setRecent] = useState([])
   const loadRecentData =  async ( )=>{
     try{
       const response = await loadProductsRecent();  
       const temp:any = response.data;
-      setRecent(temp.data.slice(0,4));
+      setRecent(temp.data);
     }catch(err){
       console.log(err);
     } 
@@ -34,7 +34,7 @@ const ListGoods = () => {
       <Divide></Divide>
       <ListBottom> 
         {recent.map((item,idx)=>(
-          <Goods item={item}/>
+          <Goods item={item} key={idx}/>
         ))}
       </ListBottom>
     </Section>
@@ -79,7 +79,8 @@ const Divide = styled.div`
 `;
 
 const ListBottom = styled.div`
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   margin-top: 35px ;
 `;
