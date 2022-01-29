@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import palette from '../../styles/palette';
+import SearchBar from '../Search/SearchBar';
 import useHeader from './useHeader';
 
 function Header() {
@@ -25,7 +26,7 @@ function Header() {
       </TopBar>
       <SearchHeader>
         <img src="" alt="로고" />
-        <SearchInput></SearchInput>
+        <SearchBar/>
         <div>
           <Item to="/myPage">내정보</Item>
           <Item to="#">장바구니</Item>
@@ -83,14 +84,7 @@ const SearchHeader = styled.div`
   width: 1020px;
   height: 80px;
 `;
-
-const SearchInput = styled.input`
-  height: 40px;
-  width: 550px;
-  border: 1px solid darkviolet;
-  padding: 10px;
-  outline: none;
-`;
+ 
 
 const Item = styled(NavLink)`
   font-weight: bold;
