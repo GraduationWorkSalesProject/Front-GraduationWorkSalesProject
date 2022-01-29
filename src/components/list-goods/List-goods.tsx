@@ -49,7 +49,7 @@ const ListGoods = (text:any) => {
       <Divide></Divide>
       <ListBottom> 
         {products.map((item,idx)=>(
-          <Goods item={item} key={idx}></Goods>
+          <Goods data={item} key={idx}></Goods>
         ))}
       </ListBottom>
     </Section>
