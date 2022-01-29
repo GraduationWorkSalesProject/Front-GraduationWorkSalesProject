@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GoodsProps } from '../../types/goods';
 
 
-const Goods = ({item}:any) => { 
+
+interface IProps {
+  item:GoodsProps;
+}
+
+
+const Goods = ({item}:IProps) => { 
   return (
       <Container>
         <ItemImg src={item.representationImage.imageHref} alt="product_image"/>
