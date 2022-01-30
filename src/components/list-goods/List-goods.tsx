@@ -1,27 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Goods from '../goods/Goods';
 import styled from 'styled-components';
+import { loadProductsBest, loadProductsRecent } from '../../api/product';
 
-const ListGoods = () => {
+const ListGoods = (text:any) => {
 
-  const [title, setTitle] = useState('Best Items');
+  const [products,setProducts] = useState([]) 
+
+  const loadRecentData =  async ( )=>{
+    try{
+      const response = await loadProductsRecent();  
+      const temp:any = response.data;
+      setProducts(temp.data);
+    }catch(err){
+      console.log(err);
+    } 
+  }
+
+  const loadBestData = async () => {
+    try{
+      const response = await loadProductsBest();
+      const temp:any = response.data;
+      setProducts(temp.data);
+    }catch(err){
+      console.log(err);
+    } 
+  }
+
+  useEffect(()=>{
+    if(text.title==="New ITEMS"){
+      loadRecentData();
+    }
+    else if(text.title==="Best ITEMS"){
+      loadBestData();
+    }
+  },[])
 
   return(
     <Section>
       <ListTop>
         <TitleWapper>
-          <span>{title}</span>
+          <span>{text.title}</span>
         </TitleWapper>
        <More>
          <button>더보기</button>
        </More>
       </ListTop>
       <Divide></Divide>
-      <ListBottom>
-        <Goods/>
-        <Goods/>
-        <Goods/>
-        <Goods/>
+      <ListBottom> 
+        {products.map((item,idx)=>(
+          <Goods data={item} key={idx}></Goods>
+        ))}
       </ListBottom>
     </Section>
   
@@ -65,7 +94,8 @@ const Divide = styled.div`
 `;
 
 const ListBottom = styled.div`
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   margin-top: 35px ;
 `;

@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-
-
-const Goods = () => {
+import { GoodsProps } from '../../types/goods';
+ 
+const Goods = ({data}:GoodsProps) => { 
   return (
       <Container>
-        <ItemImg src="https://picsum.photos/180" alt="product_image"/>
+        <ItemImg src={data.representationImage.imageHref} alt="product_image"/>
         <ItemTop>
           <div>
-            <Name>상품명</Name>
+            <Name>{data.productName}</Name>
           </div>
           <div>
             <FavoriteIcon className="fas fa-heart"></FavoriteIcon>
@@ -16,7 +16,7 @@ const Goods = () => {
           </div>
         </ItemTop>
         <div>
-          <Price>가격</Price>
+          <Price>{data.productPrice.toLocaleString()} 원</Price>
           <Author>작가명</Author>
         </div>
       </Container>
@@ -24,7 +24,8 @@ const Goods = () => {
 }
 
 const Container = styled.div`
-  width: 195px;
+
+  margin: 0 1rem;
 `;
 
 const ItemImg = styled.img`
