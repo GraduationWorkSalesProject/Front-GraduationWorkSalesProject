@@ -1,21 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GoodsProps } from '../../types/goods';
-
-
-
-interface IProps {
-  item:GoodsProps;
-}
-
-
-const Goods = ({item}:IProps) => { 
+ 
+const Goods = ({data}:GoodsProps) => { 
   return (
       <Container>
-        <ItemImg src={item.representationImage.imageHref} alt="product_image"/>
+        <ItemImg src={data.representationImage.imageHref} alt="product_image"/>
         <ItemTop>
           <div>
-            <Name>{item.productName}</Name>
+            <Name>{data.productName}</Name>
           </div>
           <div>
             <FavoriteIcon className="fas fa-heart"></FavoriteIcon>
@@ -23,7 +16,7 @@ const Goods = ({item}:IProps) => {
           </div>
         </ItemTop>
         <div>
-          <Price>{item.productPrice.toLocaleString()} 원</Price>
+          <Price>{data.productPrice.toLocaleString()} 원</Price>
           <Author>작가명</Author>
         </div>
       </Container>
