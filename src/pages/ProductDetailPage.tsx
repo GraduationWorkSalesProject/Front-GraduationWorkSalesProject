@@ -1,9 +1,25 @@
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import palette from '../styles/palette';
 import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
+import { useEffect, useState } from 'react';
+import { loadProduct } from '../api/product';  
 
-const ProductDetailPage = () => {
+const ProductDetailPage = () => {    
+  const [product, setProduct] = useState();
+ 
+  const {id}:any = useParams(); 
+  
+  const getData = async() => {
+    const response = await loadProduct(id)
+    setProduct(response);
+  }
+  
+  useEffect(() => {
+    getData();   
+  }, []);
+ 
   return (
     <Wrapper>
       <ProductOverview />

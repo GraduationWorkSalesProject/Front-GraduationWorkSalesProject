@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GoodsProps } from '../../types/goods';
  
-const Goods = ({data}:GoodsProps) => { 
+const Goods = ({data}:any) => { 
   return (
       <Container>
         <ItemImg src={data.representationImage.imageHref} alt="product_image"/>
