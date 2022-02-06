@@ -6,8 +6,8 @@ export const AddProductApi = async (form: any) => {
   return response;
 };
 
-export const loadProductsRecent   = async () =>{
-  const response = await client.get('products/lists/recent');
+export const loadProductsRecent  = async () =>{
+  const response = await client.get(`/products/lists/recent`);
   if (response.status !== 200) {
     throw response.status;
   }
@@ -15,11 +15,20 @@ export const loadProductsRecent   = async () =>{
   return response;
 }
 
-export const loadProductsBest   = async () =>{
-  const response = await client.get('products/lists/like');
+export const loadProductsBest  = async () =>{
+  const response = await client.get(`/products/lists/like`);
   if (response.status !== 200) {
     throw response.status;
   }
   console.log("응답",response);
   return response;
+}
+
+export const loadProduct = async( id : number ) =>{
+  const response = await client.get(`/products/${id}`);
+  if(response.status !== 200){
+    throw response.status;
+  }
+  console.log("res", response);
+  return response.data;
 }
