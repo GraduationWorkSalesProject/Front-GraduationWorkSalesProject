@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
-
+import { useParams } from 'react-router-dom';
+ 
 const ProductContent = () => {
+  let  id  = useParams(); 
+  console.log(id);
   return (
     <Wrapper>
       <div>
