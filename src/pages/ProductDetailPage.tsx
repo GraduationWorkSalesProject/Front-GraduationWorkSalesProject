@@ -5,9 +5,10 @@ import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
 import { useEffect, useState } from 'react';
 import { loadProduct } from '../api/product';  
+import { GoodsProps } from '../types/goods';
 
 const ProductDetailPage = () => {    
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState<GoodsProps>();
  
   const {id}:any = useParams(); 
   

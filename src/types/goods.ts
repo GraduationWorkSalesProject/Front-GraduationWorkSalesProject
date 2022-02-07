@@ -11,12 +11,14 @@ interface HashProps{
   }
   
   export interface GoodsProps  {
-    data:{
       categoryId: number;
       categoryName: string;
+      follow:number;
       hashtagList: HashProps[];
-      id:number;
-      like?:number;
+      id:number; 
+      productDeliveryPrice:number;
+      productDeliveryTerm:number;
+      productImageList:string[];
       productInformation:string;
       productName:string;
       productPrice:number;
@@ -24,6 +26,7 @@ interface HashProps{
       productRegisterDate:string;
       productUpdateDate:string;
       representationImage:ImageProps;
-      sellerName:string;
-    }
+      sellerId:number;
+      sellerInformation:string;
+      sellerName:string; 
   };

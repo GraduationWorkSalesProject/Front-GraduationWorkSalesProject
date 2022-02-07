@@ -1,5 +1,6 @@
 import { client } from './axios';
 import { Client } from './http';
+import { GoodsProps } from '../types/goods';
  
 export const AddProductApi = async (form: any) => {
   const response = await Client.post('/products', form, 'multipart/form-data'); 
@@ -30,5 +31,5 @@ export const loadProduct = async( id : number ) =>{
     throw response.status;
   }
   console.log("res", response);
-  return response.data;
+  return response.data as GoodsProps;
 }
