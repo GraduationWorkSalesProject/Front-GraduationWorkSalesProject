@@ -33,3 +33,16 @@ export const loadProduct = async( id : number ) =>{
   console.log("res", response);
   return response.data;;
 }
+
+export const searchProduct = async(keyword:string,sort:string, page:number) =>{
+  const response = await client.post(`/products`,{
+    keyword,
+    sort,
+    page
+  });
+  if(response.status !== 200){
+    throw response.status;
+  }
+  console.log("res", response);
+  return response.data;;
+}
