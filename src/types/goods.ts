@@ -18,7 +18,7 @@ interface HashProps{
       id:number; 
       productDeliveryPrice:number;
       productDeliveryTerm:number;
-      productImageList:string[];
+      productImageList:ImageProps[];
       productInformation:string;
       productName:string;
       productPrice:number;

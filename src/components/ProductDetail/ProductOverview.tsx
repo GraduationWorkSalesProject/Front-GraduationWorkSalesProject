@@ -9,14 +9,31 @@ const images: string[] = [
   'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/009b/ba5c53dd525a446946606934a26a7cb07f3fc3cfe02d79e714058724cdcd.jpg',
 ];
 
+interface IImageProps {
+  imageHref:string;
+  imageName:string;
+  imageType:string;
+  imageUuid:string;
+}
+
+
 interface IProps {
   productName:string;
   productPrice:number;
   productDeliveryPrice:number;
   productDeliveryTerm:number;
+  representationImage : IImageProps;
+  productImageList: IImageProps[];
 }
 
-const ProductOverview = ({productName,productPrice,productDeliveryPrice,productDeliveryTerm}:IProps) => {
+const ProductOverview = ({
+  productName,
+  productPrice,
+  productDeliveryPrice,
+  productDeliveryTerm,
+  representationImage,
+  productImageList
+}:IProps) => {
   const [mainImg, setMainImg] = useState(images[0]);
 
   // 클릭시 메인 이미지 변화
@@ -27,15 +44,15 @@ const ProductOverview = ({productName,productPrice,productDeliveryPrice,productD
     <Wrapper>
       <ImgViewer>
         <div className="product-image__items">
-          {images.map((imageSrc) => (
+          {productImageList.map((image) => (
             <Thumbnail
-              src={imageSrc}
+              src={image.imageHref}
               alt=""
-              onMouseEnter={() => changeMainImage(imageSrc)}
+              onMouseEnter={() => changeMainImage(image.imageHref)}
             />
           ))}
         </div>
-        <MainImage src={mainImg} alt="product image" />
+        <MainImage src={representationImage.imageHref} alt="product image" />
       </ImgViewer>
       <ProductOverviewContent>
         <h1 className="product-content__title">

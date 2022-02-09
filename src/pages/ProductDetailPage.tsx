@@ -32,6 +32,8 @@ const ProductDetailPage = () => {
           productPrice={product.productPrice}
           productDeliveryPrice={product.productDeliveryPrice} 
           productDeliveryTerm={product.productDeliveryTerm}
+          representationImage={product.representationImage}
+          productImageList={product.productImageList}
      />
       <Nav>
         <nav>
