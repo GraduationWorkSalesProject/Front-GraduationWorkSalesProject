@@ -11,7 +11,7 @@ const SearchBar = () => {
     const handleSearch = async(keyword:string) =>{
         const sort="최신순";
         let page = 0;
-        const response = await searchProduct(keyword,page,sort);
+        const response = await searchProduct(keyword, sort, page);
         if(response===null){
             return;
         }

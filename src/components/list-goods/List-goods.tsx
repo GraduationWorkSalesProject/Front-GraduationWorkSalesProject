@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Goods from '../goods/Goods';
 import styled from 'styled-components';
 import { loadProductsBest, loadProductsRecent } from '../../api/product';
+import { Link } from 'react-router-dom';
 
 const ListGoods = (text:any) => {
 
@@ -49,7 +50,9 @@ const ListGoods = (text:any) => {
       <Divide></Divide>
       <ListBottom> 
         {products.map((item,idx)=>(
-          <Goods data={item} key={idx}></Goods>
+          <Link to={`products/${item.id}`}>
+            <Goods data={item} key={idx}></Goods> 
+          </Link>
         ))}
       </ListBottom>
     </Section>

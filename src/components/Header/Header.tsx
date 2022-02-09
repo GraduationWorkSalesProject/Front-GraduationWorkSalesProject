@@ -25,11 +25,14 @@ function Header() {
         )}
       </TopBar>
       <SearchHeader>
-        <img src="" alt="로고" />
-        <SearchBar/>
+        <Item to="/">
+          <img src="./asset/logo.png" alt="logo" className="logo"/>
+        </Item>
+        <SearchBar />
         <div>
           <Item to="/myPage">내정보</Item>
           <Item to="#">장바구니</Item>
+          {token && <Item to="/productRegister">상품 등록</Item>}
         </div>
       </SearchHeader>
       <GNB>
@@ -90,7 +93,20 @@ const Item = styled(NavLink)`
   font-weight: bold;
   padding: 0 10px 0;
   font-size: 12px;
+  
+  .logo{
+    width:100px;
+  }
 `;
+
+const SearchInput = styled.input`
+  height: 40px;
+  width: 550px;
+  border: 1px solid darkviolet;
+  padding: 10px;
+  outline: none;
+`;
+
 
 const GNB = styled.div`
   border-top: 1px solid grey;

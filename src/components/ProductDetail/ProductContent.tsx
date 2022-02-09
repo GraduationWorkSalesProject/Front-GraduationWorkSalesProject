@@ -1,31 +1,36 @@
 import styled from 'styled-components';
 import palette from '../../styles/palette';
+import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
 
-const ProductContent = () => {
+interface IProps{
+  productInformation:string;
+  representationImage : ImageProps;
+  productImageList: ImageProps[];
+} 
+
+const ProductContent = ({productInformation, representationImage, productImageList }:IProps) => { 
   return (
     <Wrapper>
       <div>
         <div id="product-info">
-          <img
-            alt=""
-            src="https://image1.coupangcdn.com/image/vendor_inventory/4b13/bee8f5f729c00f7498b26737465aa7522addf5c73c396747a0e546b5e3ff.jpg"
-          ></img>
-        </div>
-        <div id="caution"></div>
-        <div id="truth-safety"></div>
+          <ProductImage
+            src={representationImage.imageHref}
+            alt="product-MainImage"
+            className="productImage"
+          />
+          {productImageList.map((image)=>(
+            <ProductImage src={image.imageHref} alt='product-subImage' className="productImage"/>
+          ))}
+        </div> 
       </div>
       <div>
         <ArtistCard>
           <div>
-            <img src="" alt="" />
-            <span>애프터모멘트</span>
+            <img src="" alt="" /> 
           </div>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            nisi optio blanditiis necessitatibus numquam. Distinctio alias iusto
-            maiores facere optio, nam rerum officia cumque, recusandae
-            praesentium, ipsam architecto aut? Dignissimos.
+          {productInformation}
           </p>
           <Button className="follow-button" inverted>
             팔로우
@@ -39,7 +44,13 @@ const ProductContent = () => {
 const Wrapper = styled.div`
   max-width: 1020px;
   display: flex;
+  flex: 8 1;
+ 
 `;
+
+const ProductImage = styled.img`
+  width: 100%;
+`
 
 const ArtistCard = styled.div`
   min-width: 300px;

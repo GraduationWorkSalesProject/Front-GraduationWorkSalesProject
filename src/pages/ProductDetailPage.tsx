@@ -1,12 +1,40 @@
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import palette from '../styles/palette';
 import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
+import { useEffect, useState } from 'react';
+import { loadProduct } from '../api/product';  
+import { GoodsProps, ProductResponse } from '../types/goods';
 
-const ProductDetailPage = () => {
+const ProductDetailPage = () => {    
+  const [product, setProduct] = useState<GoodsProps>();
+ 
+  const {id}:any = useParams(); 
+  
+  const getData = async() => {
+    const response: ProductResponse = await loadProduct(id); 
+    setProduct(response.data);
+  }
+  console.log('b',product)
+  useEffect(() => {
+    getData();   
+  }, []);
+
+  if(!product) {
+    return <div>로딩중... </div>
+  }
+ 
   return (
     <Wrapper>
-      <ProductOverview />
+      <ProductOverview 
+          productName={product.productName}
+          productPrice={product.productPrice}
+          productDeliveryPrice={product.productDeliveryPrice} 
+          productDeliveryTerm={product.productDeliveryTerm}
+          representationImage={product.representationImage}
+          productImageList={product.productImageList}
+     />
       <Nav>
         <nav>
           <ol className="product-detail__list">
@@ -22,7 +50,11 @@ const ProductDetailPage = () => {
           </ol>
         </nav>
       </Nav>
-      <ProductContent />
+      <ProductContent
+          productInformation={product.productInformation}
+          representationImage={product.representationImage}
+          productImageList={product.productImageList}
+      />
     </Wrapper>
   );
 };

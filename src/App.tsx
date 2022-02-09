@@ -24,7 +24,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/join" component={JoinPage} />
         <Route path="/sellerInfo" component={SellerPage} /> 
-        <Route path="/products" component={ProductDetailPage} />
+        <Route path="/products/:id" component={ProductDetailPage} />
         <Route path="/productRegister" component={ProductRegisterPage} />
         <Route path="/myPage" component={MyPage} />
         <Route path="/myLikeItem" component={MyLikeItemPage} /> 
