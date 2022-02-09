@@ -9,7 +9,14 @@ const images: string[] = [
   'https://thumbnail6.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/009b/ba5c53dd525a446946606934a26a7cb07f3fc3cfe02d79e714058724cdcd.jpg',
 ];
 
-const ProductOverview = () => {
+interface IProps {
+  productName:string;
+  productPrice:number;
+  productDeliveryPrice:number;
+  productDeliveryTerm:number;
+}
+
+const ProductOverview = ({productName,productPrice,productDeliveryPrice,productDeliveryTerm}:IProps) => {
   const [mainImg, setMainImg] = useState(images[0]);
 
   // 클릭시 메인 이미지 변화
@@ -32,19 +39,19 @@ const ProductOverview = () => {
       </ImgViewer>
       <ProductOverviewContent>
         <h1 className="product-content__title">
-          [JAJU/자주] 남/여 피치기모 체크 파자마상하세트 6종택1
+         {productName}
         </h1>
-        <strong className="product-content__price">17,000원</strong>
+        <strong className="product-content__price">{productPrice.toLocaleString()}원</strong>
         <div>
           <span className="product-content__delivery_title">배송비</span>
-          <span className="product-content__delivery_content">4,000원</span>
+          <span className="product-content__delivery_content">{productDeliveryPrice.toLocaleString()}원</span>
         </div>
         <div>
           <span className="product-content__delivery_period_title">
             배송시작
           </span>
           <span className="product-content__delivery_period_content">
-            최대 14일 이내
+            최대 {productDeliveryTerm}일 이내
           </span>
         </div>
         <div className="product-content__buttons">

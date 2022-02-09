@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
- 
-const ProductContent = () => {
+
+interface IProps{
+  productInformation:string;
+} 
+
+const ProductContent = ({productInformation}:IProps) => { 
   return (
     <Wrapper>
       <div>
@@ -19,13 +23,10 @@ const ProductContent = () => {
         <ArtistCard>
           <div>
             <img src="" alt="" />
-            <span>애프터모멘트</span>
+            {/* <span>애프터모멘트</span> */}
           </div>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-            nisi optio blanditiis necessitatibus numquam. Distinctio alias iusto
-            maiores facere optio, nam rerum officia cumque, recusandae
-            praesentium, ipsam architecto aut? Dignissimos.
+          {productInformation}
           </p>
           <Button className="follow-button" inverted>
             팔로우
