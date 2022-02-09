@@ -31,6 +31,7 @@ function Header() {
         <div>
           <Item to="/myPage">내정보</Item>
           <Item to="#">장바구니</Item>
+          {token && <Item to="/productRegister">상품 등록</Item>}
         </div>
       </SearchHeader>
       <GNB>
