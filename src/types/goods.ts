@@ -10,7 +10,7 @@ interface HashProps{
     imageUuid:string;
   }
   
-  export interface GoodsProps  {
+  export interface GoodsProps  { 
       categoryId: number;
       categoryName: string;
       follow:number;
@@ -30,3 +30,10 @@ interface HashProps{
       sellerInformation:string;
       sellerName:string; 
   };
+
+  export interface ProductResponse {
+    id: number;
+    code:string;
+    message:string;
+    data: GoodsProps
+  }
