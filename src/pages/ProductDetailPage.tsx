@@ -1,28 +1,24 @@
-import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import styled from 'styled-components'; 
 import palette from '../styles/palette';
-import ProductOverview from '../components/ProductDetail/ProductOverview';
+import ProductOverview from '../components/ProductDetail/ProductOverview'; 
 import ProductContent from '../components/ProductDetail/ProductContent';
-import { useEffect, useState } from 'react';
-import { loadProduct } from '../api/product';  
-import { GoodsProps, ProductResponse } from '../types/goods';
 
-const ProductDetailPage = () => {    
-  const [product, setProduct] = useState<GoodsProps>();
- 
-  const {id}:any = useParams(); 
+import useProductDetail from '../hooks/useProductDetail';
+
+const ProductDetailPage = () => {
+
+  const { product, loading, responseOK } = useProductDetail(); 
   
-  const getData = async() => {
-    const response: ProductResponse = await loadProduct(id); 
-    setProduct(response.data);
-  }
-  console.log('b',product)
-  useEffect(() => {
-    getData();   
-  }, []);
-
   if(!product) {
+    return <div>로딩중...</div>
+  }
+
+  if(loading) {
     return <div>로딩중... </div>
+  }
+
+  if(!loading && !responseOK) {
+    return <div>Not Found</div>
   }
  
   return (
