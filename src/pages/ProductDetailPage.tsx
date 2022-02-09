@@ -52,6 +52,8 @@ const ProductDetailPage = () => {
       </Nav>
       <ProductContent
           productInformation={product.productInformation}
+          representationImage={product.representationImage}
+          productImageList={product.productImageList}
       />
     </Wrapper>
   );
