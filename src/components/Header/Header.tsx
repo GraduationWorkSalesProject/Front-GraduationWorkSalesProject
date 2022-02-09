@@ -24,7 +24,9 @@ function Header() {
         )}
       </TopBar>
       <SearchHeader>
-        <img src="" alt="로고" />
+        <Item to="/">
+          <img src="./asset/logo.png" alt="logo" className="logo"/>
+        </Item>
         <SearchInput></SearchInput>
         <div>
           <Item to="/myPage">내정보</Item>
@@ -96,6 +98,10 @@ const Item = styled(NavLink)`
   font-weight: bold;
   padding: 0 10px 0;
   font-size: 12px;
+  
+  .logo{
+    width:100px;
+  }
 `;
 
 const GNB = styled.div`
