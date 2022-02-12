@@ -22,6 +22,7 @@ const ProductDetailPage = () => {
     const response = await likeProduct(Number(id)); 
     if(response===null){
       alert(response.message);
+      return;
     } 
     alert(response.message);
   }
