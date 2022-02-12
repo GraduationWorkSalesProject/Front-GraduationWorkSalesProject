@@ -32,9 +32,10 @@ const ProductOverview = ({
     <Wrapper>
       <ImgViewer>
         <div className="product-image__items">
-          {productImageList.map((image) => (
+          {productImageList.map((image, index) => (
             <Thumbnail
               src={image.imageHref}
+              key={index}
               alt="image-thumbnail"
             />
           ))}

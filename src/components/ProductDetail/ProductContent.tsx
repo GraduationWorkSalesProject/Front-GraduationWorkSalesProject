@@ -19,8 +19,8 @@ const ProductContent = ({productInformation, representationImage, productImageLi
             alt="product-MainImage"
             className="productImage"
           />
-          {productImageList.map((image)=>(
-            <ProductImage src={image.imageHref} alt='product-subImage' className="productImage"/>
+          {productImageList.map((image, index)=>(
+            <ProductImage src={image.imageHref} key={index} alt='product-subImage' className="productImage"/>
           ))}
         </div> 
       </div>
