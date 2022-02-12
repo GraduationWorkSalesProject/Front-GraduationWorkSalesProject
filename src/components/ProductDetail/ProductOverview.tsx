@@ -12,6 +12,7 @@ interface IProps {
   productDeliveryTerm:number;
   representationImage : ImageProps;
   productImageList: ImageProps[];
+  likeCount:number;
   handleLike: () =>void;
 }
 
@@ -22,6 +23,7 @@ const ProductOverview = ({
   productDeliveryTerm,
   representationImage,
   productImageList,
+  likeCount,
   handleLike
 }:IProps) => {
 
@@ -47,6 +49,10 @@ const ProductOverview = ({
         <div>
           <span className="product-content__delivery_title">배송비</span>
           <span className="product-content__delivery_content">{productDeliveryPrice.toLocaleString()}원</span>
+        </div>
+        <div>
+          <span className="product-content__delivery_title">좋아요</span>
+          <span className="product-content__delivery_content">{likeCount}</span>
         </div>
         <div>
           <span className="product-content__delivery_period_title">
