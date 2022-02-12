@@ -1,14 +1,8 @@
-import { AxiosResponse } from 'axios';
 import { ProductResponse } from './../types/goods';
-import { client, auth } from './axios';
+import { client } from './axios';
 import { Client } from './http'; 
  
-interface Flag {
-  data: object;
-  code: string;
-  status: number;
-}
-
+ 
 export const AddProductApi = async (form: any) => {
   const response = await Client.post('/products', form, 'multipart/form-data'); 
   return response;
@@ -51,13 +45,5 @@ export const searchProduct = async(keyword:string,sort:string, page:number) =>{
     throw response.status;
   }
   console.log("res", response);
-  return response.data;
-}
-
-export const likeProduct = async(id:number) =>{
-  const response:any = await auth.post(`/products/${id}/like`); 
-  if(response.status !== 200){  
-    throw response.status;
-  } 
   return response.data;
 }
