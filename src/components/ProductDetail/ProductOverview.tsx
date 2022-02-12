@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 import palette from '../../styles/palette';
 import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
@@ -12,6 +12,7 @@ interface IProps {
   productDeliveryTerm:number;
   representationImage : ImageProps;
   productImageList: ImageProps[];
+  handleLike: () =>void;
 }
 
 const ProductOverview = ({
@@ -20,8 +21,11 @@ const ProductOverview = ({
   productDeliveryPrice,
   productDeliveryTerm,
   representationImage,
-  productImageList
+  productImageList,
+  handleLike
 }:IProps) => {
+
+
   return (
     <Wrapper>
       <ImgViewer>
@@ -53,7 +57,7 @@ const ProductOverview = ({
           </span>
         </div>
         <div className="product-content__buttons">
-          <Button inverted className="product-content__like_button">
+          <Button inverted className="product-content__like_button" onClick={handleLike}>
             찜하기
           </Button>
           <Button className="product-content__chat_button">채팅하기</Button>

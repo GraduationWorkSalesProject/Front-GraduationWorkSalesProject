@@ -2,12 +2,29 @@ import styled from 'styled-components';
 import palette from '../styles/palette';
 import ProductOverview from '../components/ProductDetail/ProductOverview'; 
 import ProductContent from '../components/ProductDetail/ProductContent';
+import { useParams } from 'react-router-dom'; 
 
 import useProductDetail from '../hooks/useProductDetail';
+import { likeProduct } from '../api/product';
+
+interface IParam {
+  id: string;
+}
 
 const ProductDetailPage = () => {
+  const { id }:IParam  = useParams();
 
-  const { product, loading, responseOK } = useProductDetail(); 
+  const { product, loading, responseOK } = useProductDetail(id); 
+
+  const handleLike =async () => {
+    const response:any = await likeProduct(Number(id));
+
+    console.log("rea",response)
+    if(response===null){
+      alert(response.message);
+    } 
+    alert(response.message);
+  }
   
   if(!product) {
     return <div>로딩중...</div>
@@ -30,6 +47,7 @@ const ProductDetailPage = () => {
           productDeliveryTerm={product.productDeliveryTerm}
           representationImage={product.representationImage}
           productImageList={product.productImageList}
+          handleLike={handleLike}
      />
       <Nav>
         <nav>
