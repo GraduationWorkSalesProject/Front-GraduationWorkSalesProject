@@ -2,6 +2,7 @@ import { ProductResponse } from './../types/goods';
 import { client } from './axios';
 import { Client } from './http'; 
  
+ 
 export const AddProductApi = async (form: any) => {
   const response = await Client.post('/products', form, 'multipart/form-data'); 
   return response;
@@ -31,7 +32,7 @@ export const loadProduct = async( id : number ) =>{
     throw response.status;
   }
   console.log("res", response);
-  return response.data;;
+  return response.data;
 }
 
 export const searchProduct = async(keyword:string,sort:string, page:number) =>{
@@ -44,5 +45,5 @@ export const searchProduct = async(keyword:string,sort:string, page:number) =>{
     throw response.status;
   }
   console.log("res", response);
-  return response.data;;
+  return response.data;
 }

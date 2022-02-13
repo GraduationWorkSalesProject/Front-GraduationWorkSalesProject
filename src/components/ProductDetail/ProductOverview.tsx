@@ -1,17 +1,17 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
 import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
- 
-  
+
 interface IProps {
-  productName:string;
-  productPrice:number;
-  productDeliveryPrice:number;
-  productDeliveryTerm:number;
-  representationImage : ImageProps;
+  productName: string;
+  productPrice: number;
+  productDeliveryPrice: number;
+  productDeliveryTerm: number;
+  representationImage: ImageProps;
   productImageList: ImageProps[];
+  likeCount: number;
+  handleLike: () => void;
 }
 
 const ProductOverview = ({
@@ -20,15 +20,18 @@ const ProductOverview = ({
   productDeliveryPrice,
   productDeliveryTerm,
   representationImage,
-  productImageList
-}:IProps) => {
+  productImageList,
+  likeCount,
+  handleLike,
+}: IProps) => {
   return (
     <Wrapper>
       <ImgViewer>
         <div className="product-image__items">
-          {productImageList.map((image) => (
+          {productImageList.map((image, index) => (
             <Thumbnail
               src={image.imageHref}
+              key={index}
               alt="image-thumbnail"
             />
           ))}
@@ -36,13 +39,19 @@ const ProductOverview = ({
         <MainImage src={representationImage.imageHref} alt="product image" />
       </ImgViewer>
       <ProductOverviewContent>
-        <h1 className="product-content__title">
-         {productName}
-        </h1>
-        <strong className="product-content__price">{productPrice.toLocaleString()}원</strong>
+        <h1 className="product-content__title">{productName}</h1>
+        <strong className="product-content__price">
+          {productPrice.toLocaleString()}원
+        </strong>
         <div>
           <span className="product-content__delivery_title">배송비</span>
-          <span className="product-content__delivery_content">{productDeliveryPrice.toLocaleString()}원</span>
+          <span className="product-content__delivery_content">
+            {productDeliveryPrice.toLocaleString()}원
+          </span>
+        </div>
+        <div>
+          <span className="product-content__delivery_title">좋아요</span>
+          <span className="product-content__delivery_content">{likeCount}</span>
         </div>
         <div>
           <span className="product-content__delivery_period_title">
@@ -53,7 +62,11 @@ const ProductOverview = ({
           </span>
         </div>
         <div className="product-content__buttons">
-          <Button inverted className="product-content__like_button">
+          <Button
+            inverted
+            className="product-content__like_button"
+            onClick={handleLike}
+          >
             찜하기
           </Button>
           <Button className="product-content__chat_button">채팅하기</Button>
@@ -78,8 +91,8 @@ const ImgViewer = styled.div`
 `;
 
 const MainImage = styled.img`
-  max-width: 400px;
-  max-height: 500px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 20px;
@@ -121,7 +134,7 @@ const ProductOverviewContent = styled.div`
   .product-content__delivery_period_title {
     display: inline-block;
     color: ${palette.grey};
-    margin: 0 25px 20px 0;
+    margin: 0 25px 10px 0;
   }
   .product-content__buttons {
     position: absolute;

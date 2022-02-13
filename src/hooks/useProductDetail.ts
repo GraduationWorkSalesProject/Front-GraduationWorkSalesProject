@@ -8,8 +8,7 @@ interface IParam {
     id: string;
 }
 
-const useProductDetail = () => { 
-    const { id }:IParam  = useParams();
+const useProductDetail = (id:string) => {  
     const [product, setProduct] = useState<GoodsProps>();
 
     const { loading, responseOK } = useRequest(async () => { 

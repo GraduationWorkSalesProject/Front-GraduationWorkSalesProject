@@ -2,12 +2,42 @@ import styled from 'styled-components';
 import palette from '../styles/palette';
 import ProductOverview from '../components/ProductDetail/ProductOverview'; 
 import ProductContent from '../components/ProductDetail/ProductContent';
+import { useParams } from 'react-router-dom'; 
 
-import useProductDetail from '../hooks/useProductDetail';
+import useProductDetail from '../hooks/useProductDetail'; 
+import { likeProduct, loadLikeCount } from '../api/like';
+import { useEffect, useState } from 'react';
+
+interface IParam {
+  id: string;
+}
 
 const ProductDetailPage = () => {
+  const { id }:IParam  = useParams();
+  const [likeCount, setLikeCount] = useState<number>(0);
 
-  const { product, loading, responseOK } = useProductDetail(); 
+  const { product, loading, responseOK } = useProductDetail(id); 
+
+  const handleLike =async () => {
+    const response = await likeProduct(Number(id)); 
+    if(response===null){
+      alert(response.message);
+      return;
+    } 
+    alert(response.message);
+  }
+
+  const handleLikeCount = async() => {
+    const response = await loadLikeCount(Number(id)); 
+    if(response===null){
+      return;
+    } 
+    setLikeCount(response.data.like_num) 
+  }
+
+  useEffect(()=>{
+    handleLikeCount()
+  },[])
   
   if(!product) {
     return <div>로딩중...</div>
@@ -30,6 +60,8 @@ const ProductDetailPage = () => {
           productDeliveryTerm={product.productDeliveryTerm}
           representationImage={product.representationImage}
           productImageList={product.productImageList}
+          likeCount={likeCount}
+          handleLike={handleLike}
      />
       <Nav>
         <nav>
