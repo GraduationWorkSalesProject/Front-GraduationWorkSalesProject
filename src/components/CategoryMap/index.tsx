@@ -6,20 +6,22 @@ import ImgBox from './ImgBox';
 function CategoryMap() {
   return (
     <Container>
-      <Title>CATEGORY</Title>
-      <ImgMapContainer>
-        <div>
-          <ImgDivisionRow>
-            <ImgBox width="195" height="195" text="조명" />
-            <ImgBox width="195" height="195" text="악세서리" />
-          </ImgDivisionRow>
-          <ImgBox width="420" height="350" text="의류" />
-        </div>
-        <ImgDivisionCol>
-          <ImgBox width="470" height="340" text="공예품" />
-          <ImgBox width="470" height="210" text="식품" />
-        </ImgDivisionCol>
-      </ImgMapContainer>
+      <CategoryWrapper>
+        <Title>CATEGORY</Title>
+        <ImgMapContainer>
+          <div>
+            <ImgDivisionRow>
+              <ImgBox width="195" height="195" text="조명" />
+              <ImgBox width="195" height="195" text="악세서리" />
+            </ImgDivisionRow>
+            <ImgBox width="420" height="350" text="의류" />
+          </div>
+          <ImgDivisionCol>
+            <ImgBox width="470" height="340" text="공예품" />
+            <ImgBox width="470" height="210" text="식품" />
+          </ImgDivisionCol>
+        </ImgMapContainer>
+      </CategoryWrapper>
     </Container>
   );
 }
@@ -27,8 +29,15 @@ function CategoryMap() {
 export default CategoryMap;
 
 const Container = styled.section`
+  position: relative;
   width: 950px;
+  height: 700px;
   margin: auto;
+`;
+
+const CategoryWrapper = styled.div`
+  position: absolute;
+  top: 0;
 `;
 
 const Title = styled.div`
