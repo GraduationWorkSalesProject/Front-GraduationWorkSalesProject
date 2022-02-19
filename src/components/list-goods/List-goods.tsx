@@ -10,6 +10,9 @@ interface IProps {
 }
 
 const ListGoods = ({ data, title }: IProps) => {
+  if (data.length === 0) {
+    return <div>상품이 없습니다</div>;
+  }
   return (
     <Section>
       <Wrapper>
