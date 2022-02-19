@@ -1,37 +1,26 @@
-import React, { useCallback, useState } from 'react'
-import styled from "styled-components"
-import { searchProduct } from '../../api/product'
-
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 const SearchBar = () => {
+  const history = useHistory();
+  const handleSearch = async (keyword: string) => {
+    history.push({
+      pathname: '/searchProduct',
+      state: keyword,
+    });
+  };
 
-    const [data,setData] = useState({});
-
-
-    const handleSearch = async(keyword:string) =>{
-        const sort="최신순";
-        let page = 0;
-        const response = await searchProduct(keyword, sort, page);
-        if(response===null){
-            return;
-        }
-        setData(response);
+  const onKeyUp = useCallback((e) => {
+    const keyword = e.target.value;
+    if (e.keyCode === 13 && e.target.value.trim() !== '') {
+      handleSearch(keyword);
     }
+    // eslint-disable-next-line
+  }, []);
 
- 
-    const onKeyUp = useCallback(
-        (e) => { 
-        const keyword = e.target.value;  
-        if (e.keyCode === 13 && e.target.value.trim() !== '') {
-            handleSearch(keyword);
-        }
-    },[]);
- 
-    return (
-        <SearchWrapper onKeyUp={onKeyUp} />
- 
-    )
-}
+  return <SearchWrapper onKeyUp={onKeyUp} />;
+};
 
 const SearchWrapper = styled.input`
   height: 40px;
@@ -41,4 +30,4 @@ const SearchWrapper = styled.input`
   outline: none;
 `;
 
-export default SearchBar
+export default SearchBar;
