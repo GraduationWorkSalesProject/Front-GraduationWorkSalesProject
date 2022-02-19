@@ -1,39 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { searchProduct } from '../api/product';
+import React from 'react';
 import { useLocation } from 'react-router';
-import { GoodsProps } from '../types/goods';
 import SearchProduct from '../components/Search/SearchProduct';
+import useSearch from '../hooks/useSearch';
 
 interface LocationProps {
   state: string;
 }
 
 const ProductSearchPage = () => {
-  const [searchData, setSearchData] = useState<GoodsProps[]>([]);
   const location: LocationProps = useLocation();
+  const keyword = location.state;
+  const { product, loading, responseOK } = useSearch(keyword);
 
-  const getSearchData = async () => {
-    const sort = '최신순';
-    let page = 0;
-    const response = await searchProduct(location.state, sort, page);
-    if (response === null) {
-      return;
-    }
-    setSearchData(response.data);
-  };
+  if (!product) {
+    return <div>로딩중...</div>;
+  }
 
-  useEffect(() => {
-    getSearchData();
-    // eslint-disable-next-line
-  }, []);
+  if (loading) {
+    return <div>로딩중... </div>;
+  }
 
-  if (!searchData) {
-    return <div>loading...</div>;
+  if (!loading && !responseOK) {
+    return <div>Not Found</div>;
   }
 
   return (
     <div>
-      <SearchProduct data={searchData} />
+      <SearchProduct data={product} />
     </div>
   );
 };
