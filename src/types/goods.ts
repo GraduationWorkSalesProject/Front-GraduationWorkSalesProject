@@ -38,6 +38,6 @@ export interface ProductResponse {
   data: GoodsProps;
 }
 
-export interface SearchType {
+export interface DataType {
   data: GoodsProps[];
 }

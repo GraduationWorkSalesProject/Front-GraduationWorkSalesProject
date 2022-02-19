@@ -1,4 +1,4 @@
-import { ProductResponse, SearchType } from './../types/goods';
+import { ProductResponse, DataType } from './../types/goods';
 import { client } from './axios';
 import { Client } from './http';
 import { AxiosResponse } from 'axios';
@@ -9,21 +9,24 @@ export const AddProductApi = async (form: any) => {
 };
 
 export const loadProductsRecent = async () => {
-  const response = await client.get(`/products/lists/recent`);
+  const response: AxiosResponse<DataType> = await client.get(
+    `/products/lists/recent`,
+  );
   if (response.status !== 200) {
     throw response.status;
   }
-  console.log('res', response);
-  return response;
+  return response.data;
 };
 
 export const loadProductsBest = async () => {
-  const response = await client.get(`/products/lists/like`);
+  const response: AxiosResponse<DataType> = await client.get(
+    `/products/lists/like`,
+  );
   if (response.status !== 200) {
     throw response.status;
   }
   console.log('res', response);
-  return response;
+  return response.data;
 };
 
 export const loadProduct = async (id: number) => {
@@ -40,7 +43,7 @@ export const searchProduct = async (
   sort: string,
   page: number,
 ) => {
-  const response: AxiosResponse<SearchType> = await client.post(`/products`, {
+  const response: AxiosResponse<DataType> = await client.post(`/products`, {
     keyword,
     sort,
     page,
