@@ -4,65 +4,72 @@ import styled from 'styled-components';
 import { loadProductsBest, loadProductsRecent } from '../../api/product';
 import { Link } from 'react-router-dom';
 
-const ListGoods = (text:any) => {
+const ListGoods = (text: any) => {
+  const [products, setProducts] = useState([]);
 
-  const [products,setProducts] = useState([]) 
-
-  const loadRecentData =  async ( )=>{
-    try{
-      const response = await loadProductsRecent();  
-      const temp:any = response.data;
+  const loadRecentData = async () => {
+    try {
+      const response = await loadProductsRecent();
+      const temp: any = response.data;
       setProducts(temp.data);
-    }catch(err){
+    } catch (err) {
       console.log(err);
-    } 
-  }
+    }
+  };
 
   const loadBestData = async () => {
-    try{
+    try {
       const response = await loadProductsBest();
-      const temp:any = response.data;
+      const temp: any = response.data;
       setProducts(temp.data);
-    }catch(err){
+    } catch (err) {
       console.log(err);
-    } 
-  }
-
-  useEffect(()=>{
-    if(text.title==="New ITEMS"){
-      loadRecentData();
     }
-    else if(text.title==="Best ITEMS"){
+  };
+
+  useEffect(() => {
+    if (text.title === 'New ITEMS') {
+      loadRecentData();
+    } else if (text.title === 'Best ITEMS') {
       loadBestData();
     }
-  },[])
+  }, []);
 
-  return(
+  return (
     <Section>
-      <ListTop>
-        <TitleWapper>
-          <span>{text.title}</span>
-        </TitleWapper>
-       <More>
-         <button>더보기</button>
-       </More>
-      </ListTop>
-      <Divide></Divide>
-      <ListBottom> 
-        {products.map((item,idx)=>(
-          <Link to={`products/${item.id}`}>
-            <Goods data={item} key={idx}></Goods> 
-          </Link>
-        ))}
-      </ListBottom>
+      <Wrapper>
+        <ListTop>
+          <TitleWapper>
+            <span>{text.title}</span>
+          </TitleWapper>
+          <More>
+            <button>더보기</button>
+          </More>
+        </ListTop>
+        <Divide></Divide>
+        <ListBottom>
+          {products.map((item, idx) => (
+            <Link to={`products/${item.id}`}>
+              <Goods data={item} key={idx}></Goods>
+            </Link>
+          ))}
+        </ListBottom>
+      </Wrapper>
     </Section>
-  
   );
-}
+};
 
 const Section = styled.section`
+  position: relative;
   width: 940px;
   margin: 50px auto;
+  height: 1050px;
+`;
+
+const Wrapper = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
 `;
 
 const ListTop = styled.div`
@@ -77,7 +84,7 @@ const TitleWapper = styled.div`
   & > span {
     font-size: 28px;
     margin-bottom: 20px;
-  } 
+  }
 `;
 
 const More = styled.div`
@@ -86,21 +93,20 @@ const More = styled.div`
     border: 0px;
     background-color: transparent;
     cursor: pointer;
-
   }
 `;
 
 const Divide = styled.div`
   width: 100%;
   height: 1px;
-  background-color: #5A5D5A;
+  background-color: #5a5d5a;
 `;
 
 const ListBottom = styled.div`
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
-  margin-top: 35px ;
+  margin-top: 35px;
 `;
 
 export default ListGoods;

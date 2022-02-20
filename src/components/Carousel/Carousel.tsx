@@ -29,12 +29,15 @@ function Carousel({ autoflow = 3000 }) {
 export default Carousel;
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 400px;
 `;
 
 const FillImage = styled.img`
+  position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
   object-fit: cover;
 `;
