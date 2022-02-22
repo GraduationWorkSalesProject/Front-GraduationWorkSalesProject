@@ -1,9 +1,11 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+import SearchIcon from '../common/icons/SearchIcon';
 
 const SearchBar = () => {
   const history = useHistory();
+
   const handleSearch = async (keyword: string) => {
     history.push({
       pathname: '/searchProduct',
@@ -19,15 +21,34 @@ const SearchBar = () => {
     // eslint-disable-next-line
   }, []);
 
-  return <SearchWrapper onKeyUp={onKeyUp} />;
+  return (
+    <SearchBox>
+      <SearchWrapper
+        placeholder="검색어를 입력해주세요"
+        onKeyUp={onKeyUp}
+      ></SearchWrapper>
+      <SearchIconBox>
+        <SearchIcon />
+      </SearchIconBox>
+    </SearchBox>
+  );
 };
 
+const SearchBox = styled.div`
+  position: relative;
+`;
 const SearchWrapper = styled.input`
   height: 40px;
   width: 550px;
   border: 1px solid darkviolet;
   padding: 10px;
   outline: none;
+`;
+
+const SearchIconBox = styled.div`
+  position: absolute;
+  top: 7px;
+  right: 10px;
 `;
 
 export default SearchBar;
