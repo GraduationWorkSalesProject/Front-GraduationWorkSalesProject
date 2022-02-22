@@ -11,6 +11,7 @@ const SearchBar = () => {
       pathname: '/searchProduct',
       state: keyword,
     });
+    window.location.reload();
   };
 
   const onKeyUp = useCallback((e) => {

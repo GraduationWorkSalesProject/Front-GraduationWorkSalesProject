@@ -10,30 +10,31 @@ interface IProps {
 }
 
 const ListGoods = ({ data, title }: IProps) => {
-  if (data.length === 0) {
-    return <div>상품이 없습니다</div>;
-  }
   return (
-    <Section>
-      <Wrapper>
-        <ListTop>
-          <TitleWapper>
-            <span>{title}</span>
-          </TitleWapper>
-          <More>
-            <button>더보기</button>
-          </More>
-        </ListTop>
-        <Divide></Divide>
-        <ListBottom>
-          {data.map((item, idx) => (
-            <Link to={`products/${item.id}`}>
-              <Goods data={item} key={idx}></Goods>
-            </Link>
-          ))}
-        </ListBottom>
-      </Wrapper>
-    </Section>
+    <>
+      {data.length ? (
+        <Section>
+          <Wrapper>
+            <ListTop>
+              <TitleWapper>
+                <span>{title}</span>
+              </TitleWapper>
+              <More>{/* <button>더보기</button> */}</More>
+            </ListTop>
+            <Divide></Divide>
+            <ListBottom>
+              {data.map((item, idx) => (
+                <Link to={`products/${item.id}`}>
+                  <Goods data={item} key={idx}></Goods>
+                </Link>
+              ))}
+            </ListBottom>
+          </Wrapper>
+        </Section>
+      ) : (
+        <NotificationSection>상품이 없습니다</NotificationSection>
+      )}
+    </>
   );
 };
 
@@ -85,6 +86,22 @@ const ListBottom = styled.div`
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
   margin-top: 35px;
+`;
+
+const NotificationSection = styled.section`
+  padding: 8rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 700;
+  }
 `;
 
 export default ListGoods;
