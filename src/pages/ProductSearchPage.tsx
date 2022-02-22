@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import Skeleton from '../components/common/Skeleton';
 import NoSearchResults from '../components/Search/NoSearchResults';
 import SearchProduct from '../components/Search/SearchProduct';
 import usePageTitle from '../hooks/usePageTitle';
@@ -17,21 +16,13 @@ const ProductSearchPage = () => {
 
   usePageTitle(`${keyword} 검색 결과`);
 
-  const getSkeletonUI = () => (
-    <>
-      <Skeleton type="TEXT" size="MEDIUM" width="14rem" margin="1rem 2rem" />
-     </>
-  );
-
   if (!loading && !responseOK) {
     return <div>Not Found</div>;
   }
 
   return (
     <div>
-      {loading ? (
-        getSkeletonUI()
-      ) : product.length ? (
+      {product.length ? (
         <SearchProduct data={product} />
       ) : (
         <NoSearchResults search={keyword || ''} />
