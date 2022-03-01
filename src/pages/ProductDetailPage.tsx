@@ -1,68 +1,73 @@
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 import palette from '../styles/palette';
-import ProductOverview from '../components/ProductDetail/ProductOverview'; 
+import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
-import { useParams } from 'react-router-dom'; 
+import { useParams } from 'react-router-dom';
 
-import useProductDetail from '../hooks/useProductDetail'; 
 import { likeProduct, loadLikeCount } from '../api/like';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { loadProduct } from '../api/product';
 
 interface IParam {
   id: string;
 }
 
 const ProductDetailPage = () => {
-  const { id }:IParam  = useParams();
+  const { id }: IParam = useParams();
   const [likeCount, setLikeCount] = useState<number>(0);
 
-  const { product, loading, responseOK } = useProductDetail(id); 
+  const { isLoading, data: { data } = {} } = useQuery(
+    ['product-detail', id],
+    () => loadProduct(Number(id)),
+    {
+      onError: (error: Error) => {
+        alert(error.message);
+      },
+    },
+  );
 
-  const handleLike =async () => {
-    const response = await likeProduct(Number(id)); 
-    if(response===null){
+  const handleLike = async () => {
+    const response = await likeProduct(Number(id));
+    if (response === null) {
       alert(response.message);
       return;
-    } 
+    }
     alert(response.message);
-  }
+  };
 
-  const handleLikeCount = async() => {
-    const response = await loadLikeCount(Number(id)); 
-    if(response===null){
+  const handleLikeCount = async () => {
+    const response = await loadLikeCount(Number(id));
+    if (response === null) {
       return;
-    } 
-    setLikeCount(response.data.like_num) 
+    }
+    setLikeCount(response.data.like_num);
+  };
+
+  useEffect(() => {
+    handleLikeCount();
+  }, []);
+
+  if (!data) {
+    return <div>로딩중...</div>;
   }
 
-  useEffect(()=>{
-    handleLikeCount()
-  },[])
-  
-  if(!product) {
-    return <div>로딩중...</div>
+  if (isLoading) {
+    return <div>로딩중... </div>;
   }
 
-  if(loading) {
-    return <div>로딩중... </div>
-  }
-
-  if(!loading && !responseOK) {
-    return <div>Not Found</div>
-  }
- 
   return (
     <Wrapper>
-      <ProductOverview 
-          productName={product.productName}
-          productPrice={product.productPrice}
-          productDeliveryPrice={product.productDeliveryPrice} 
-          productDeliveryTerm={product.productDeliveryTerm}
-          representationImage={product.representationImage}
-          productImageList={product.productImageList}
-          likeCount={likeCount}
-          handleLike={handleLike}
-     />
+      <ProductOverview
+        productName={data.productName}
+        productPrice={data.productPrice}
+        productDeliveryPrice={data.productDeliveryPrice}
+        productDeliveryTerm={data.productDeliveryTerm}
+        representationImage={data.representationImage}
+        productImageList={data.productImageList}
+        likeCount={likeCount}
+        handleLike={handleLike}
+      />
       <Nav>
         <nav>
           <ol className="product-detail__list">
@@ -79,9 +84,9 @@ const ProductDetailPage = () => {
         </nav>
       </Nav>
       <ProductContent
-          productInformation={product.productInformation}
-          representationImage={product.representationImage}
-          productImageList={product.productImageList}
+        productInformation={data.productInformation}
+        representationImage={data.representationImage}
+        productImageList={data.productImageList}
       />
     </Wrapper>
   );

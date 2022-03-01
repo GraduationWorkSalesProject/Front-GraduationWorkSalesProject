@@ -31,7 +31,7 @@ export default Carousel;
 const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
 `;
 
 const FillImage = styled.img`

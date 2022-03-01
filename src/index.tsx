@@ -5,14 +5,17 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import { persistor, store } from './modules/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import APIProvider from './api/apiProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
+    <APIProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </APIProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
