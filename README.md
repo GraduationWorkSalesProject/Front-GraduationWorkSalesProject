@@ -1,4 +1,4 @@
-#  Gradu
+#  그라듀
 
 #### 서비스 링크: https://graduo.shop
 
@@ -21,5 +21,5 @@
 - TypeScript
 - Styled-Components
 - Redux
-
+- React-Query
  
