@@ -42,7 +42,7 @@ const Section = styled.section`
   position: relative;
   width: 940px;
   margin: 50px auto;
-  height: 1050px;
+  height: 450px;
 `;
 
 const Wrapper = styled.div`
