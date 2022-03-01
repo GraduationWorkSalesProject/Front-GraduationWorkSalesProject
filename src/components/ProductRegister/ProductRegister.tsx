@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import useTextArea from '../../hooks/useTextArea';
 import palette from '../../styles/palette';
@@ -28,6 +29,8 @@ const ProductRegister = () => {
   const [shipFee, setShipFee] = useInput('');
   const [shipStart, setShipStart] = useInput('');
   const [content, setContent] = useTextArea('');
+
+  const history = useHistory();
 
   useEffect(() => {
     preventEnterEvent();
@@ -124,10 +127,13 @@ const ProductRegister = () => {
     try {
       const response = await AddProductApi(formData);
       if (response.status === 200 || 201) {
+        alert('상품등록 성공');
         console.log('상품등록 성공');
       }
     } catch (e) {
       console.log(e);
+      alert('로그인을 해주세요');
+      history.push('/login');
     }
   };
 
