@@ -3,35 +3,42 @@ import palette from '../../styles/palette';
 import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
 
-interface IProps{
-  productInformation:string;
-  representationImage : ImageProps;
+interface IProps {
+  productInformation: string;
+  representationImage: ImageProps;
   productImageList: ImageProps[];
-} 
+}
 
-const ProductContent = ({productInformation, representationImage, productImageList }:IProps) => { 
+const ProductContent = ({
+  productInformation,
+  representationImage,
+  productImageList,
+}: IProps) => {
   return (
     <Wrapper>
-      <div>
+      <ContentBox>
         <div id="product-info">
           <ProductImage
             src={representationImage.imageHref}
             alt="product-MainImage"
             className="productImage"
           />
-          {productImageList.map((image, index)=>(
-            <ProductImage src={image.imageHref} key={index} alt='product-subImage' className="productImage"/>
+          {productImageList.map((image, index) => (
+            <ProductImage
+              src={image.imageHref}
+              key={index}
+              alt="product-subImage"
+              className="productImage"
+            />
           ))}
-        </div> 
-      </div>
+        </div>
+      </ContentBox>
       <div>
         <ArtistCard>
           <div>
-            <img src="" alt="" /> 
+            <img src="" alt="" />
           </div>
-          <p>
-          {productInformation}
-          </p>
+          <p>{productInformation}</p>
           <Button className="follow-button" inverted>
             팔로우
           </Button>
@@ -44,16 +51,20 @@ const ProductContent = ({productInformation, representationImage, productImageLi
 const Wrapper = styled.div`
   max-width: 1020px;
   display: flex;
-  flex: 8 1;
- 
+  flex: 2 1;
+`;
+
+const ContentBox = styled.div`
+  min-width: 680px;
 `;
 
 const ProductImage = styled.img`
   width: 100%;
-`
+`;
 
 const ArtistCard = styled.div`
-  min-width: 300px;
+  min-width: 340px;
+  max-width: 340px;
   padding: 20px;
   border: 1px solid ${palette.brightGrey};
   border-radius: 6px;
