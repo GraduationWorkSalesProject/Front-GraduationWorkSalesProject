@@ -2,8 +2,10 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useLocation } from 'react-router';
 import { searchProduct } from '../api/product';
+import Skeleton from '../components/Skeleton/Skeleton';
 import NoSearchResults from '../components/Search/NoSearchResults';
 import SearchProduct from '../components/Search/SearchProduct';
+import SearchSkeleton from '../components/Skeleton/SearchSkeleton';
 import usePageTitle from '../hooks/usePageTitle';
 
 interface LocationProps {
@@ -27,16 +29,12 @@ const ProductSearchPage = () => {
 
   usePageTitle(`${keyword} 검색 결과`);
 
-  if (isLoading) {
-    return <div>로딩중...</div>;
-  }
-
   return (
     <div>
-      {data.length ? (
-        <SearchProduct data={data} />
+      {isLoading ? (
+        <SearchSkeleton />
       ) : (
-        <NoSearchResults search={keyword || ''} />
+        <SearchProduct data={data} keyword={keyword} />
       )}
     </div>
   );
