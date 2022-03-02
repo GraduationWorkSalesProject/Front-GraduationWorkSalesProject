@@ -8,6 +8,8 @@ import { likeProduct, loadLikeCount } from '../api/like';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { loadProduct } from '../api/product';
+import DetailSkeleton from '../components/Skeleton/DetailSkeleton';
+import DetailContentSkeleton from '../components/Skeleton/DetailContentSkeleton';
 
 interface IParam {
   id: string;
@@ -26,6 +28,7 @@ const ProductDetailPage = () => {
       },
     },
   );
+  console.log('dat = ', data);
 
   const handleLike = async () => {
     const response = await likeProduct(Number(id));
@@ -47,27 +50,26 @@ const ProductDetailPage = () => {
   useEffect(() => {
     handleLikeCount();
   }, []);
-
-  if (!data) {
-    return <div>로딩중...</div>;
-  }
-
-  if (isLoading) {
-    return <div>로딩중... </div>;
-  }
-
+  // if (isLoading) {
+  //   return <div>s</div>;
+  // }
   return (
     <Wrapper>
-      <ProductOverview
-        productName={data.productName}
-        productPrice={data.productPrice}
-        productDeliveryPrice={data.productDeliveryPrice}
-        productDeliveryTerm={data.productDeliveryTerm}
-        representationImage={data.representationImage}
-        productImageList={data.productImageList}
-        likeCount={likeCount}
-        handleLike={handleLike}
-      />
+      {isLoading ? (
+        <DetailSkeleton />
+      ) : (
+        <ProductOverview
+          productName={data.productName}
+          productPrice={data.productPrice}
+          productDeliveryPrice={data.productDeliveryPrice}
+          productDeliveryTerm={data.productDeliveryTerm}
+          representationImage={data.representationImage}
+          productImageList={data.productImageList}
+          likeCount={likeCount}
+          handleLike={handleLike}
+        />
+      )}
+
       <Nav>
         <nav>
           <ol className="product-detail__list">
@@ -83,11 +85,15 @@ const ProductDetailPage = () => {
           </ol>
         </nav>
       </Nav>
-      <ProductContent
-        productInformation={data.productInformation}
-        representationImage={data.representationImage}
-        productImageList={data.productImageList}
-      />
+      {isLoading ? (
+        <DetailContentSkeleton />
+      ) : (
+        <ProductContent
+          productInformation={data.productInformation}
+          representationImage={data.representationImage}
+          productImageList={data.productImageList}
+        />
+      )}
     </Wrapper>
   );
 };
