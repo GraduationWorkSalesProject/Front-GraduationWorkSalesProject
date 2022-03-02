@@ -39,5 +39,6 @@ export interface ProductResponse {
 }
 
 export interface DataType {
-  data: GoodsProps[];
+  data: GoodsProps[] | [] ;
+  keyword: string;
 }
