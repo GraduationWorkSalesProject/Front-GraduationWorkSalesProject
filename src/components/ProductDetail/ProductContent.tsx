@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 import palette from '../../styles/palette';
 import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
@@ -14,6 +15,11 @@ const ProductContent = ({
   representationImage,
   productImageList,
 }: IProps) => {
+  const history = useHistory();
+  const handleFollow = () => {
+    alert('로그인을 해주세요');
+    history.push('/login');
+  };
   return (
     <Wrapper>
       <ContentBox>
@@ -39,7 +45,7 @@ const ProductContent = ({
             <img src="" alt="" />
           </div>
           <p>{productInformation}</p>
-          <Button className="follow-button" inverted>
+          <Button onClick={handleFollow} className="follow-button" inverted>
             팔로우
           </Button>
         </ArtistCard>

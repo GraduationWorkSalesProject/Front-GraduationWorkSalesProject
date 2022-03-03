@@ -22,7 +22,7 @@ const SearchSkeleton = () => {
 };
 const Container = styled.div`
   width: 940px;
-  margin: 130px auto 0;
+  margin: 130px auto;
   display: flex;
 `;
 export default SearchSkeleton;
