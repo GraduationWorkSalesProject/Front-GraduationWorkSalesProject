@@ -3,13 +3,14 @@ import palette from '../styles/palette';
 import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
 import { useParams } from 'react-router-dom';
-
+import { useHistory } from 'react-router';
 import { likeProduct, loadLikeCount } from '../api/like';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { loadProduct } from '../api/product';
 import DetailSkeleton from '../components/Skeleton/DetailSkeleton';
 import DetailContentSkeleton from '../components/Skeleton/DetailContentSkeleton';
+import useHeader from '../components/Header/useHeader';
 
 interface IParam {
   id: string;
@@ -17,8 +18,9 @@ interface IParam {
 
 const ProductDetailPage = () => {
   const { id }: IParam = useParams();
+  const history = useHistory();
   const [likeCount, setLikeCount] = useState<number>(0);
-
+  const { token, user, handleLogout } = useHeader();
   const { isLoading, data: { data } = {} } = useQuery(
     ['product-detail', id],
     () => loadProduct(Number(id)),
@@ -28,12 +30,15 @@ const ProductDetailPage = () => {
       },
     },
   );
-  console.log('dat = ', data);
 
   const handleLike = async () => {
+    if (!token) {
+      alert('로그인을 해주세요');
+      history.push('/login');
+    }
     const response = await likeProduct(Number(id));
+    console.log('resres', response);
     if (response === null) {
-      alert(response.message);
       return;
     }
     alert(response.message);

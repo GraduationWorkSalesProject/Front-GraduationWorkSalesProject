@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 import palette from '../../styles/palette';
 import { ImageProps } from '../../types/goods';
 import Button from '../common/Button';
@@ -24,6 +25,11 @@ const ProductOverview = ({
   likeCount,
   handleLike,
 }: IProps) => {
+  const history = useHistory();
+  const handleChatting = () => {
+    alert('로그인을 해주세요');
+    history.push('/login');
+  };
   return (
     <Wrapper>
       <ImgViewer>
@@ -69,7 +75,12 @@ const ProductOverview = ({
           >
             찜하기
           </Button>
-          <Button className="product-content__chat_button">채팅하기</Button>
+          <Button
+            className="product-content__chat_button"
+            onClick={handleChatting}
+          >
+            채팅하기
+          </Button>
         </div>
       </ProductOverviewContent>
     </Wrapper>
