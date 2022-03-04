@@ -51,3 +51,7 @@ export interface HashType {
   hashtagName: string;
   id: number;
 }
+
+export interface GoodsType {
+  data: GoodsProps;
+}
