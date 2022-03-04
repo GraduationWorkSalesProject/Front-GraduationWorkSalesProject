@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import palette from '../../styles/palette';
-import { ImageProps } from '../../types/goods';
+import { HashType, ImageProps } from '../../types/goods';
 import Button from '../common/Button';
 
 interface IProps {
@@ -12,6 +12,7 @@ interface IProps {
   representationImage: ImageProps;
   productImageList: ImageProps[];
   likeCount: number;
+  hashtagList: HashType[];
   handleLike: () => void;
 }
 
@@ -23,6 +24,7 @@ const ProductOverview = ({
   representationImage,
   productImageList,
   likeCount,
+  hashtagList,
   handleLike,
 }: IProps) => {
   const history = useHistory();
@@ -30,6 +32,7 @@ const ProductOverview = ({
     alert('로그인을 해주세요');
     history.push('/login');
   };
+  console.log('asdasdasdsa', hashtagList);
   return (
     <Wrapper>
       <ImgViewer>
@@ -67,6 +70,12 @@ const ProductOverview = ({
             최대 {productDeliveryTerm}일 이내
           </span>
         </div>
+        <div className="hashList">
+          {hashtagList.map((item) => (
+            <span className="hashName"> #{item.hashtagName}</span>
+          ))}
+        </div>
+
         <div className="product-content__buttons">
           <Button
             inverted
@@ -135,18 +144,29 @@ const ProductOverviewContent = styled.div`
   .product-content__title {
     font-size: 28px;
     font-weight: 400;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
   .product-content__price {
     display: inline-block;
     font-size: 28px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   .product-content__delivery_title,
   .product-content__delivery_period_title {
     display: inline-block;
     color: ${palette.grey};
     margin: 0 25px 10px 0;
+  }
+
+  & .hashList {
+    display: flex;
+
+    & .hashName {
+      color: rgba(0, 0, 0, 0.5);
+      margin-right: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
   }
   .product-content__buttons {
     position: absolute;

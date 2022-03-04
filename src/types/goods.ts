@@ -39,6 +39,15 @@ export interface ProductResponse {
 }
 
 export interface DataType {
-  data: GoodsProps[] | [] ;
+  data: GoodsProps[] | [];
   keyword: string;
+}
+
+export interface HashListType {
+  hashTags: HashType[];
+}
+
+export interface HashType {
+  hashtagName: string;
+  id: number;
 }

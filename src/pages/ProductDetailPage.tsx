@@ -54,9 +54,7 @@ const ProductDetailPage = () => {
   useEffect(() => {
     handleLikeCount();
   }, []);
-  // if (isLoading) {
-  //   return <div>s</div>;
-  // }
+
   return (
     <Wrapper>
       {isLoading ? (
@@ -70,6 +68,7 @@ const ProductDetailPage = () => {
           representationImage={data.representationImage}
           productImageList={data.productImageList}
           likeCount={likeCount}
+          hashtagList={data.hashtagList}
           handleLike={handleLike}
         />
       )}
