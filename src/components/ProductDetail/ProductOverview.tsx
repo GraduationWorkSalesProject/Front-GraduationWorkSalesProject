@@ -111,6 +111,7 @@ const MainImage = styled.img`
 
 const Thumbnail = styled.img`
   object-fit: cover;
+  min-width: 70px;
   max-width: 70px;
   max-height: 70px;
   cursor: pointer;
