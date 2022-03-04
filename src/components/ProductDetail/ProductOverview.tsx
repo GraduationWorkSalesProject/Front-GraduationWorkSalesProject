@@ -32,7 +32,7 @@ const ProductOverview = ({
     alert('로그인을 해주세요');
     history.push('/login');
   };
-  console.log('asdasdasdsa', hashtagList);
+
   return (
     <Wrapper>
       <ImgViewer>
@@ -71,8 +71,10 @@ const ProductOverview = ({
           </span>
         </div>
         <div className="hashList">
-          {hashtagList.map((item) => (
-            <span className="hashName"> #{item.hashtagName}</span>
+          {hashtagList.map((item, index) => (
+            <span key={index} className="hashName">
+              #{item.hashtagName}
+            </span>
           ))}
         </div>
 

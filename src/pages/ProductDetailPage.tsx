@@ -95,6 +95,8 @@ const ProductDetailPage = () => {
           productInformation={data.productInformation}
           representationImage={data.representationImage}
           productImageList={data.productImageList}
+          sellerName={data.sellerName}
+          registerDate={data.productRegisterDate}
         />
       )}
     </Wrapper>
