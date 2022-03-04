@@ -11,14 +11,14 @@ function CategoryMap() {
         <ImgMapContainer>
           <div>
             <ImgDivisionRow>
-              <ImgBox width="195" height="195" text="조명" />
-              <ImgBox width="195" height="195" text="악세서리" />
+              <ImgBox width={195} height={195} text="조명" num={0} />
+              <ImgBox width={195} height={195} text="악세서리" num={1} />
             </ImgDivisionRow>
-            <ImgBox width="420" height="350" text="의류" />
+            <ImgBox width={420} height={350} text="의류" num={2} />
           </div>
           <ImgDivisionCol>
-            <ImgBox width="470" height="340" text="공예품" />
-            <ImgBox width="470" height="210" text="식품" />
+            <ImgBox width={470} height={340} text="공예품" num={3} />
+            <ImgBox width={470} height={210} text="식품" num={4} />
           </ImgDivisionCol>
         </ImgMapContainer>
       </CategoryWrapper>
