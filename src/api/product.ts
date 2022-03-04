@@ -25,7 +25,6 @@ export const loadProductsBest = async () => {
   if (response.status !== 200) {
     throw response.status;
   }
-  console.log('res', response);
   return response.data;
 };
 
@@ -34,7 +33,6 @@ export const loadProduct = async (id: number) => {
   if (response.status !== 200) {
     throw response.status;
   }
-  console.log('res', response);
   return response.data;
 };
 
@@ -52,6 +50,5 @@ export const searchProduct = async (
   if (response.status !== 200) {
     throw response.status;
   }
-  console.log('res', response);
   return response.data;
 };

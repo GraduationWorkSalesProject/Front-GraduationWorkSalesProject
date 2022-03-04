@@ -37,7 +37,6 @@ const ProductDetailPage = () => {
       history.push('/login');
     }
     const response = await likeProduct(Number(id));
-    console.log('resres', response);
     if (response === null) {
       return;
     }

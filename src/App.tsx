@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
+import UseScrollTop from './hooks/useScrollTop';
 import {
   JoinPage,
   LoginPage,
@@ -18,6 +19,7 @@ import GlobalStyle from './styles/globalStyles';
 function App() {
   return (
     <BrowserRouter>
+      <UseScrollTop />
       <GlobalStyle />
       <Header />
       <Switch>
