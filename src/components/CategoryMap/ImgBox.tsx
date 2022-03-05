@@ -1,15 +1,33 @@
 import styled from 'styled-components';
+import { CATEGORYIMAGES } from '../../utils/constants';
+import { getParametersForUnsplash } from '../../utils/getParametersForUnsplash';
 
 type imgBoxProps = {
-  width: string;
-  height: string;
+  width: number;
+  height: number;
   text: string;
+  num: number;
 };
 
-function ImgBox({ width, height, text }: imgBoxProps) {
+function ImgBox({ width, height, text, num }: imgBoxProps) {
+  const multiplyWidth = width * 2;
+  const multiplyHeight = height * 2;
   return (
     <Wrapper>
-      <ImgItem width={width} height={height} src="https://picsum.photos/400" />
+      <ImgItem
+        width={width}
+        height={height}
+        src={
+          CATEGORYIMAGES[num] +
+          getParametersForUnsplash({
+            width: multiplyWidth,
+            height: multiplyHeight,
+            quality: 'auto',
+            format: 'jpg',
+          })
+        }
+        alt="categorythumbnail"
+      />
       <CategoryTag>#{text}</CategoryTag>
     </Wrapper>
   );
