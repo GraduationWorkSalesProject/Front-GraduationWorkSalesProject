@@ -21,7 +21,7 @@ function Carousel({ autoflow = 3000 }) {
 
   return (
     <Container>
-      <FillImage src={images[currentIndex]} />
+      <FillImage src={images[currentIndex]} alt="caroueslImg" />
     </Container>
   );
 }

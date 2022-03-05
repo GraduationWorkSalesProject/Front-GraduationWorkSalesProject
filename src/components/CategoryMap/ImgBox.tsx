@@ -26,6 +26,7 @@ function ImgBox({ width, height, text, num }: imgBoxProps) {
             format: 'jpg',
           })
         }
+        alt="categorythumbnail"
       />
       <CategoryTag>#{text}</CategoryTag>
     </Wrapper>
