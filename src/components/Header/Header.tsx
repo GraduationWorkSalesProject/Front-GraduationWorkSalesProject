@@ -26,7 +26,7 @@ function Header() {
       </TopBar>
       <SearchHeader>
         <Item to="/">
-          <img src="./asset/logo.png" alt="logo" className="logo" />
+          <img src="/asset/logo.png" alt="logo" className="logo" />
         </Item>
         <SearchBar />
         <div>
