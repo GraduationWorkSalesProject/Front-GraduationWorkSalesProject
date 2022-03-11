@@ -19,7 +19,7 @@ import GlobalStyle from './styles/globalStyles';
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Header />}>
         <UseScrollTop />
         <GlobalStyle />
         <Header />

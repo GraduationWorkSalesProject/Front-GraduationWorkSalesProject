@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 
+export { default as MainPage } from './MainPage';
 const JoinPage = lazy(() => import('./JoinPage'));
 const LoginPage = lazy(() => import('./LoginPage'));
-const MainPage = lazy(() => import('./MainPage'));
 const ProductRegisterPage = lazy(() => import('./ProductRegisterPage'));
 const ProductDetailPage = lazy(() => import('./ProductDetailPage'));
 const SellerPage = lazy(() => import('./SellerPage'));
@@ -14,7 +14,6 @@ const ProductSearchPage = lazy(() => import('./ProductSearchPage'));
 export {
   JoinPage,
   LoginPage,
-  MainPage,
   ProductRegisterPage,
   ProductDetailPage,
   SellerPage,
