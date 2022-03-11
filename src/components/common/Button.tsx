@@ -6,6 +6,7 @@ type ButtonProps = {
   children: React.ReactNode;
   size?: 'small' | 'medium';
   inverted?: boolean;
+  handlePage?: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Button({ children, ...rest }: ButtonProps) {

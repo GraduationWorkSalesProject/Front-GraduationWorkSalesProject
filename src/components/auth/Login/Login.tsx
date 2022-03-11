@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../common/Button';
 import useLogin from './useLogin';
+import { useHistory } from 'react-router';
 
 function Login() {
   const { onChangeId, onChangePassword, onSubmit } = useLogin();
+  const history = useHistory();
 
+  const handlePage = () => {
+    history.push('/join');
+  };
   return (
     <LoginBlock>
       <Title>로그인</Title>
@@ -28,7 +33,9 @@ function Login() {
           <StyledLink to="#">비밀번호 찾기</StyledLink>
         </FindWrap>
         <LoginBtn>로그인</LoginBtn>
-        <Button inverted>회원가입</Button>
+        <Button inverted onClick={handlePage}>
+          회원가입
+        </Button>
       </LoginForm>
     </LoginBlock>
   );
