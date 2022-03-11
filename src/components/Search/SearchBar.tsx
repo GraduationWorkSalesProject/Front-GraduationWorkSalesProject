@@ -44,6 +44,9 @@ const SearchWrapper = styled.input`
   border: 1px solid darkviolet;
   padding: 10px;
   outline: none;
+  ::placeholder {
+    color: #8492a6;
+  }
 `;
 
 const SearchIconBox = styled.div`

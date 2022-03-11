@@ -59,7 +59,7 @@ const ListTop = styled.div`
 `;
 
 const TitleWapper = styled.div`
-  margin-bottom: 13px;
+  margin: 0 0 13px 13px;
   & > span {
     font-size: 28px;
     margin-bottom: 20px;
