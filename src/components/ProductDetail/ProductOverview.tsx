@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import palette from '../../styles/palette';
 import { HashType, ImageProps } from '../../types/goods';
 import Button from '../common/Button';
+import { useState } from 'react';
 
 interface IProps {
   productName: string;
@@ -33,6 +34,12 @@ const ProductOverview = ({
     history.push('/login');
   };
 
+  const [mainImg, setMainImg] = useState(representationImage.imageHref);
+
+  const changeMainImage = (src: string) => {
+    setMainImg(src);
+  };
+
   return (
     <Wrapper>
       <ImgViewer>
@@ -42,10 +49,12 @@ const ProductOverview = ({
               src={image.imageHref}
               key={index}
               alt="image-thumbnail"
+              onMouseEnter={() => changeMainImage(image.imageHref)}
+              onMouseOut={()=>changeMainImage(representationImage.imageHref)}
             />
           ))}
         </div>
-        <MainImage src={representationImage.imageHref} alt="product image" />
+        <MainImage src={mainImg} alt="product image" />
       </ImgViewer>
       <ProductOverviewContent>
         <h1 className="product-content__title">{productName}</h1>
