@@ -39,15 +39,12 @@ const ListGoods = ({ data, title }: IProps) => {
 };
 
 const Section = styled.section`
-  position: relative;
   width: 940px;
   margin: 50px auto;
   height: 450px;
 `;
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 0;
   height: 100%;
 `;
 
