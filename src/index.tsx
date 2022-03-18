@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import '@fortawesome/fontawesome-free/js/all.js';
 import { persistor, store } from './modules/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
