@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@reduxjs/toolkit": "^1.6.2",
     "@stomp/stompjs": "^6.1.2",
     "@testing-library/jest-dom": "^5.11.4",
@@ -54,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cra-bundle-analyzer": "^0.1.1"
   }
 }
