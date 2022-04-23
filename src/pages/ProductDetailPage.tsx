@@ -5,7 +5,7 @@ import ProductContent from '../components/ProductDetail/ProductContent';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { likeProduct, loadLikeCount } from '../api/like';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { loadProduct } from '../api/product';
 import DetailSkeleton from '../components/Skeleton/DetailSkeleton';
@@ -17,6 +17,7 @@ interface IParam {
 }
 
 const ProductDetailPage = () => {
+  console.log('렌더링')
   const { id }: IParam = useParams();
   const history = useHistory();
   const [likeCount, setLikeCount] = useState<number>(0);
@@ -49,7 +50,9 @@ const ProductDetailPage = () => {
     setLikeCount(response.data.like_num);
   };
 
-  useEffect(() => {
+  
+
+  useLayoutEffect(() => {
     handleLikeCount();
   }, []);
 
