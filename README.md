@@ -1,7 +1,7 @@
 #  그라듀
 
 #### 서비스 링크: https://graduo.shop
-
+#### [백엔드 Repo](https://github.com/GraduationWorkSalesProject/Spring-GraduationWorkSalesProject)
 </br>
 
 ![image](https://user-images.githubusercontent.com/70426440/154849515-9cb996ab-ad92-4986-8bc3-2ef59763430e.png)
@@ -22,4 +22,18 @@
 - Styled-Components
 - Redux
 - React-Query
- z
+
+# ✅ Improvement
+
+### 1. code Splitting
+ 
+Lazy Loading을 통해 처음에 다운되는 자바스크립트 파일 크기를 998KB -> 540KB로 줄임
+
+- [관련PR](https://github.com/hyjoong/Front-GraduationWorkSalesProject/pull/39)
+- [Blog](https://velog.io/@hyunjoong/cra-bundle-analyzer)
+
+### 2. UI/UX 개선
+서버를 Heroku에서 무료로 배포하게 되면서 데이터를 받아오는데 시간이 오래 걸려서 사용자의 화면을 개선하기 위해서 Skeleton UI를 구현하였습니다
+
+- [관련Issue](https://github.com/hyjoong/Front-GraduationWorkSalesProject/issues/34)
+- [관련PR](https://github.com/hyjoong/Front-GraduationWorkSalesProject/pull/35)
