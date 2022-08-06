@@ -2,17 +2,17 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
 import SearchIcon from '../common/icons/SearchIcon';
+import { debounce } from 'lodash';
 
 const SearchBar = () => {
   const history = useHistory();
 
-  const handleSearch = async (keyword: string) => {
+  const handleSearch = debounce((keyword: string) => {
     history.push({
       pathname: '/searchProduct',
       state: keyword,
     });
-    // window.location.reload();
-  };
+  }, 1000);
 
   const onKeyUp = useCallback((e) => {
     const keyword = e.target.value;
