@@ -8,19 +8,36 @@ const Goods = ({ data }: GoodsType) => {
       <div className="imageWrapper">
         <ItemImg src={data.representationImage.imageHref} alt="product_image" />
       </div>
-      <ItemTop>
+      <Content>
         <div>
           <Name>{data.productName}</Name>
         </div>
         <div>
-          <FavoriteIcon className="fas fa-heart"></FavoriteIcon>
-          <FavoriteNum></FavoriteNum>
+          <Price>{data.productPrice.toLocaleString()} 원</Price>
+          <TagList>
+            {data.hashtagList.map((item, index) => (
+              <li key={index}>#{item.hashtagName}</li>
+            ))}
+          </TagList>
         </div>
-        <Price>{data.productPrice.toLocaleString()} 원</Price>
-      </ItemTop>
+      </Content>
     </Container>
   );
 };
+
+const TagList = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 0;
+  li {
+    color: #999999;
+    font-size: 12px;
+    :not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+`;
 
 export const hoverZoomImg = css`
   & img {
@@ -65,10 +82,9 @@ const ItemImg = styled.img`
   width: 100%;
   height: 195px;
   transition: all 0.1s;
-  overflow: hidden;
 `;
 
-const ItemTop = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,15 +93,6 @@ const ItemTop = styled.div`
 `;
 
 const Name = styled.span`
-  cursor: pointer;
-`;
-
-const FavoriteIcon = styled.i`
-  color: red;
-`;
-
-const FavoriteNum = styled.span`
-  font-size: 12px;
   cursor: pointer;
 `;
 
