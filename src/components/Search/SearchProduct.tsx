@@ -7,7 +7,7 @@ const SearchProduct = ({ data, keyword }: DataType) => {
   return (
       <>
       {data.length ? (
-        <ListGoods data={data} title="검색 결과" />
+        <ListGoods data={data}   />
       ) : (
         <NoSearchResults search={keyword || ''} />
       )}

@@ -14,11 +14,13 @@ const Goods = ({ data }: GoodsType) => {
         </div>
         <div>
           <Price>{data.productPrice.toLocaleString()} 원</Price>
-          <TagList>
-            {data.hashtagList.map((item, index) => (
-              <li key={index}>#{item.hashtagName}</li>
-            ))}
-          </TagList>
+          {data.hashtagList && (
+            <TagList>
+              {data?.hashtagList?.map((item, index) => (
+                <li key={index}>#{item.hashtagName}</li>
+              ))}
+            </TagList>
+          )}
         </div>
       </Content>
     </Container>

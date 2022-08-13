@@ -6,7 +6,7 @@ import { GoodsProps } from '../../types/goods';
 
 interface IProps {
   data: GoodsProps[];
-  title: string;
+  title?: string;
 }
 
 const ListGoods = ({ data, title }: IProps) => {
@@ -15,11 +15,13 @@ const ListGoods = ({ data, title }: IProps) => {
       {data.length ? (
         <Section>
           <Wrapper>
-            <ListTop>
-              <TitleWapper>
-                <span>{title}</span>
-              </TitleWapper>
-            </ListTop>
+            {title && (
+              <ListTop>
+                <TitleWapper>
+                  <span>{title}</span>
+                </TitleWapper>
+              </ListTop>
+            )}
             <ListBottom>
               {data.map((item, idx) => (
                 <Link to={`products/${item.id}`}>
