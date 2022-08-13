@@ -37,10 +37,18 @@ function Header() {
       </SearchHeader>
       <GNB>
         <Nav>
-          <NavItem>그라듀홈</NavItem>
-          <NavItem>베스트</NavItem>
-          <NavItem>카테고리</NavItem>
-          <NavItem>신상</NavItem>
+          <NavItem>
+            <span>그라듀홈</span>
+          </NavItem>
+          <NavItem>
+            <span>베스트</span>
+          </NavItem>
+          <NavItem>
+            <span>카테고리</span>
+          </NavItem>
+          <NavItem>
+            <span>신상</span>
+          </NavItem>
         </Nav>
       </GNB>
     </header>
@@ -48,6 +56,27 @@ function Header() {
 }
 
 export default Header;
+
+export const hoverUnderline = css`
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #946cee;
+    transform-origin: bottom center;
+    transition: transform 0.1s ease-out;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+`;
 
 const TopBar = styled.ul`
   margin: 0 auto;
@@ -107,7 +136,7 @@ const SearchInput = styled.input`
 `;
 
 const GNB = styled.div`
-  border-top: 1px solid grey;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
 `;
 
@@ -121,11 +150,15 @@ const Nav = styled.ul`
 `;
 
 const NavItem = styled.li`
-  display: block;
-
   font-size: 16px;
   height: 55px;
   padding: 20px 40px 0;
 
   cursor: pointer;
+  white-space: nowrap;
+
+  white-space: nowrap;
+  span {
+    ${hoverUnderline}
+  }
 `;
