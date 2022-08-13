@@ -20,7 +20,7 @@ const RecentData = () => {
       {isLoading ? (
         <SearchSkeleton />
       ) : (
-        <ListGoods data={data} title="New ITEMS" />
+        <ListGoods data={data} title="새로 들어온 작품" />
       )}
     </>
   );

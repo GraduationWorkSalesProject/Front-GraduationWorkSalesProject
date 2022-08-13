@@ -20,7 +20,7 @@ const BestData = () => {
       {isLoading ? (
         <SearchSkeleton />
       ) : (
-        <ListGoods data={data} title="Best ITEMS" />
+        <ListGoods data={data} title="지금 가장 핫한 작품" />
       )}
     </>
   );

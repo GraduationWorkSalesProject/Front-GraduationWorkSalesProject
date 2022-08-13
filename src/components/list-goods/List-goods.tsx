@@ -19,9 +19,7 @@ const ListGoods = ({ data, title }: IProps) => {
               <TitleWapper>
                 <span>{title}</span>
               </TitleWapper>
-              <More>{/* <button>더보기</button> */}</More>
             </ListTop>
-            <Divide></Divide>
             <ListBottom>
               {data.map((item, idx) => (
                 <Link to={`products/${item.id}`}>
@@ -51,31 +49,18 @@ const Wrapper = styled.div`
 const ListTop = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #dcdcdc;
 `;
 
 const TitleWapper = styled.div`
-  margin: 0 0 13px 13px;
+  padding: 10px 0;
   & > span {
+    color: #595959;
     font-size: 28px;
     margin-bottom: 20px;
   }
-`;
-
-const More = styled.div`
-  height: 10px;
-  & > button {
-    border: 0px;
-    background-color: transparent;
-    cursor: pointer;
-  }
-`;
-
-const Divide = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #5a5d5a;
 `;
 
 const ListBottom = styled.div`

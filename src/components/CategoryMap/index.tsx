@@ -41,8 +41,11 @@ const CategoryWrapper = styled.div`
 `;
 
 const Title = styled.div`
+  display: flex;
+  justify-content: center;
   font-size: 28px;
-  border-bottom: 0.5px solid ${palette.grey};
+  border-bottom: 1px solid #dcdcdc;
+  color: #595959;
   padding-bottom: 12px;
   margin-bottom: 38px;
 `;
