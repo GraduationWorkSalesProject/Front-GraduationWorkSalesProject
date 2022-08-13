@@ -22,18 +22,18 @@ const Goods = ({ data }: GoodsType) => {
 };
 
 const Container = styled.div`
-  margin: 0 1rem;
+  background-color: #f8f9fb;
+  border: 1px solid #d9d9d9;
+  margin: 0 10px;
+  width: 215px;
   min-height: 310px;
-  :hover {
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    transition: all 0.5s ease 0s;
-  }
 `;
 
 const ItemImg = styled.img`
-  width: 195px;
+  width: 100%;
   height: 195px;
-  cursor: pointer;
+  transition: all 0.1s;
+  overflow: hidden;
 `;
 
 const ItemTop = styled.div`

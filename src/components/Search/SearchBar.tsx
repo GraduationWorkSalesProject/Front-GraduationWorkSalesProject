@@ -40,9 +40,10 @@ const SearchBox = styled.div`
 `;
 const SearchWrapper = styled.input`
   height: 40px;
+  border-radius: 6px;
   width: 550px;
   border: 1px solid darkviolet;
-  padding: 10px;
+  padding: 15px;
   outline: none;
   ::placeholder {
     color: #8492a6;

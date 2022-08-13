@@ -108,10 +108,11 @@ const SearchInput = styled.input`
 
 const GNB = styled.div`
   border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  box-shadow: rgb(0 0 0 / 7%) 0px 3px 4px 0px;
 `;
 
 const Nav = styled.ul`
+  position: relative;
   width: 1020px;
   margin: 0 auto;
   display: flex;
@@ -120,7 +121,11 @@ const Nav = styled.ul`
 `;
 
 const NavItem = styled.li`
+  display: block;
+
   font-size: 16px;
   height: 55px;
   padding: 20px 40px 0;
+
+  cursor: pointer;
 `;
