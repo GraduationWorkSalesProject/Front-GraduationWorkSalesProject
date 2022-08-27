@@ -4,24 +4,25 @@ import ProductOverview from '../components/ProductDetail/ProductOverview';
 import ProductContent from '../components/ProductDetail/ProductContent';
 import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { likeProduct, loadLikeCount } from '../api/like';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useMutation, useQuery } from 'react-query';
+import { loadLikeCount } from '../api/like';
+import { useLayoutEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { loadProduct } from '../api/product';
 import DetailSkeleton from '../components/Skeleton/DetailSkeleton';
 import DetailContentSkeleton from '../components/Skeleton/DetailContentSkeleton';
 import useHeader from '../components/Header/useHeader';
+import usePostLike from '../hooks/queries/usePostLike';
 
 interface IParam {
   id: string;
 }
 
 const ProductDetailPage = () => {
-  console.log('렌더링')
   const { id }: IParam = useParams();
   const history = useHistory();
   const [likeCount, setLikeCount] = useState<number>(0);
   const { token, user, handleLogout } = useHeader();
+  const { mutate: postLike } = usePostLike();
 
   const { isLoading, data: { data } = {} } = useQuery(
     ['product-detail', id],
@@ -39,7 +40,7 @@ const ProductDetailPage = () => {
       history.push('/login');
       return;
     }
-    mutate();
+    postLike({ id });
   };
 
   const handleLikeCount = async () => {
@@ -50,21 +51,9 @@ const ProductDetailPage = () => {
     setLikeCount(response.data.like_num);
   };
 
-  
-
   useLayoutEffect(() => {
     handleLikeCount();
-  }, []);
-
-  const { mutate } = useMutation(() => likeProduct(Number(id)), {
-    onSuccess: () => {
-      alert('좋아요를 눌렀습니다');
-      handleLikeCount();
-    },
-    onError: (error) => {
-      alert(error);
-    },
-  });
+  }, [handleLikeCount]);
 
   return (
     <Wrapper>

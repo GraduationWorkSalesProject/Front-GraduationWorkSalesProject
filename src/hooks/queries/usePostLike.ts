@@ -1,26 +1,37 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useMutation, UseMutationOptions } from 'react-query';
-import { auth } from './../../api/axios';
+import { auth } from '../../api/axios';
+import { useQuery, QueryKey, UseQueryOptions } from 'react-query';
+
 interface Props {
-  feedId: number;
+  id: number;
 }
 
-interface CustomMutationOption
-  extends UseMutationOptions<AxiosResponse<unknown>> {
-  feedId: number;
+interface likeResponse {
+  data: {
+    like_num: number;
+  };
+  message: string;
+  status: number;
 }
 
-const postLike = ({ feedId }: Props) => async () => {
-  try {
-    const { data } = await auth.post(`/products/${feedId}/like`);
-    return data;
-  } catch (error) {
-    throw error;
-  }
+const usePostLike = (
+  options?: UseMutationOptions<
+    AxiosResponse<likeResponse>,
+    AxiosError<{ message: string }>,
+    { id: string }
+  >,
+) => {
+  return useMutation(({ id }) => auth.post(`/products/${Number(id)}/like`), {
+    ...options,
+    onSuccess: () => {
+      alert('좋아요를 눌렀습니다');
+    },
+    onError: (error) => {
+      alert(error);
+    },
+    mutationKey: 'postLike',
+  });
 };
 
-const usePostLike = ({ feedId, ...option }: CustomMutationOption) => {
-  return useMutation(postLike({ feedId }), option);
-};
-  
 export default usePostLike;
