@@ -5,8 +5,11 @@ import SearchIcon from '../common/icons/SearchIcon';
 import ListGoods from '../list-goods/List-goods';
 
 const NoSearchResults = ({ search }: { search: string }) => {
-  const { product, loading, responseOK } = useBestItems();
+  const { data, isLoading } = useBestItems();
 
+  if (isLoading) {
+    return <div>로딩중</div>;
+  }
   return (
     <>
       <NotificationSection>
@@ -14,7 +17,7 @@ const NoSearchResults = ({ search }: { search: string }) => {
         <p>{`${search}에 대한 검색 결과가 없습니다.`}</p>
       </NotificationSection>
       <RecommendSection>
-        <ListGoods data={product} title="이런 작품은 어때요?" />
+        <ListGoods data={data.data} title="이런 작품은 어때요?" />
       </RecommendSection>
     </>
   );

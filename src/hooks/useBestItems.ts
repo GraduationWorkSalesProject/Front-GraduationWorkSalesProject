@@ -1,18 +1,19 @@
-import { useState } from 'react';
-import { loadProductsBest } from '../api/product';
+import { AxiosResponse, AxiosError } from 'axios';
+import { useQuery, UseQueryOptions } from 'react-query';
 import { GoodsProps } from '../types/goods';
-import useRequest from './useRequest';
+import { loadProductsBest } from '../api/product';
+
+interface bestItemResponse {
+  product: GoodsProps[];
+}
 
 const useBestItems = () => {
-  const [product, setProduct] = useState<GoodsProps[]>([]);
-  const { loading, responseOK } = useRequest(async () => {
-    const response = await loadProductsBest();
-    if (response === null) {
-      return;
-    }
-    setProduct(response.data);
+  // options?: UseQueryOptions<AxiosResponse<bestItemResponse>, AxiosError>,
+  return useQuery(['bestItems'], () => loadProductsBest(), {
+    onError: (error: Error) => {
+      alert(error.message);
+    },
   });
-  return { product, loading, responseOK };
 };
 
 export default useBestItems;
