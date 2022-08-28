@@ -242,7 +242,7 @@ const ProductRegister = () => {
             onChange={handleTag}
           />
         </RegisterItem>
-        <RegisterItem style={{ display: 'inline-block' }}>
+        <RegisterItem className="tagContainer">
           <RegisterTitle></RegisterTitle>
           <TagWrapper>{tagItems}</TagWrapper>
         </RegisterItem>
@@ -319,6 +319,21 @@ const RegisterItem = styled.div`
   display: flex;
   min-height: 60px;
   margin: 15px 0;
+
+  &.tagContainer {
+    display: inline-block;
+    width: 100%;
+    margin: 15px auto;
+    overflow-x: auto;
+
+    ::-webkit-scrollbar {
+      height: 7px;
+      background-color: #e9e9e9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #c5c2c2;
+    }
+  }
 `;
 
 const RegisterTitle = styled.label`
