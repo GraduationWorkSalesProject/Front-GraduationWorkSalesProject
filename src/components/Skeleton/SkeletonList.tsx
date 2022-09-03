@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Skeleton from './Skeleton';
 
-const ITEMS = [1, 2, 3, 4];
-
-const SearchSkeleton = () => {
+const SkeletonList = () => {
   return (
     <Container>
-      {ITEMS.map((item, index) => (
+      {new Array(4).fill(0).map((item, index) => (
         <Skeleton
           key={index}
           type="CARD"
@@ -25,4 +23,4 @@ const Container = styled.div`
   margin: 130px auto;
   display: flex;
 `;
-export default SearchSkeleton;
+export default SkeletonList;

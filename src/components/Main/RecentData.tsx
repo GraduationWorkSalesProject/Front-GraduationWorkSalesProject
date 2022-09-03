@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { loadProductsRecent } from '../../api/product';
 import ListGoods from '../list-goods/List-goods';
-import SearchSkeleton from '../Skeleton/SearchSkeleton';
+import SkeletonList from '../Skeleton/SkeletonList';
 
 const RecentData = () => {
   const { data: { data } = {}, isLoading } = useQuery(
@@ -18,7 +18,7 @@ const RecentData = () => {
   return (
     <>
       {isLoading ? (
-        <SearchSkeleton />
+        <SkeletonList />
       ) : (
         <ListGoods data={data} title="새로 들어온 작품" />
       )}

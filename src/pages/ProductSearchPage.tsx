@@ -5,7 +5,7 @@ import { searchProduct } from '../api/product';
 import Skeleton from '../components/Skeleton/Skeleton';
 import NoSearchResults from '../components/Search/NoSearchResults';
 import SearchProduct from '../components/Search/SearchProduct';
-import SearchSkeleton from '../components/Skeleton/SearchSkeleton';
+import SkeletonList from '../components/Skeleton/SkeletonList';
 import usePageTitle from '../hooks/usePageTitle';
 
 interface LocationProps {
@@ -32,7 +32,7 @@ const ProductSearchPage = () => {
   return (
     <div>
       {isLoading ? (
-        <SearchSkeleton />
+        <SkeletonList />
       ) : (
         <SearchProduct data={data} keyword={keyword} />
       )}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { loadProductsBest } from '../../api/product';
 import ListGoods from '../list-goods/List-goods';
-import SearchSkeleton from '../Skeleton/SearchSkeleton';
+import SkeletonList from '../Skeleton/SkeletonList';
 
 const BestData = () => {
   const { data: { data } = {}, isLoading } = useQuery(
@@ -18,7 +18,7 @@ const BestData = () => {
   return (
     <>
       {isLoading ? (
-        <SearchSkeleton />
+        <SkeletonList />
       ) : (
         <ListGoods data={data} title="지금 가장 핫한 작품" />
       )}
