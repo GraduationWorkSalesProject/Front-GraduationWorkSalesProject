@@ -65,7 +65,7 @@ const LoginInput = styled.input`
   height: 54px;
   padding: 0px 19px;
   background-color: #f6f8fa;
-  border: none;
+  border: 1px solid #ffffff;
   outline: none;
   ::placeholder {
     color: #8492a6;
@@ -74,13 +74,15 @@ const LoginInput = styled.input`
     margin-top: 58px;
     margin-bottom: 32px;
   }
+  :focus {
+    border: 1px solid #808080;
+  }
 `;
 
 const FindWrap = styled.div`
   display: flex;
   justify-content: right;
-  margin-top: 30px;
-  margin-bottom: 80px;
+  margin: 20px 0 30px 0;
 `;
 
 const StyledLink = styled(Link)`

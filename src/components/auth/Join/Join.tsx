@@ -169,8 +169,12 @@ const Row = styled.div`
     background-color: #f6f8fa;
     border: none;
     outline: none;
+    border: 1px solid #ffffff;
     ::placeholder {
       color: #8492a6;
+    }
+    :focus {
+      border: 1px solid #808080;
     }
   }
 `;
