@@ -3,22 +3,24 @@ import styled from 'styled-components';
 import useBestItems from '../../hooks/useBestItems';
 import SearchIcon from '../common/icons/SearchIcon';
 import ListGoods from '../list-goods/List-goods';
+import SkeletonList from '../Skeleton/SkeletonList';
 
 const NoSearchResults = ({ search }: { search: string }) => {
   const { data, isLoading } = useBestItems();
 
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
   return (
     <>
       <NotificationSection>
         <SearchIcon />
         <p>{`${search}에 대한 검색 결과가 없습니다.`}</p>
       </NotificationSection>
-      <RecommendSection>
-        <ListGoods data={data.data} title="이런 작품은 어때요?" />
-      </RecommendSection>
+      {isLoading ? (
+        <SkeletonList />
+      ) : (
+        <RecommendSection>
+          <ListGoods data={data.data} title="이런 작품은 어때요?" />
+        </RecommendSection>
+      )}
     </>
   );
 };
